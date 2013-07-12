@@ -32,6 +32,12 @@ int getptbin( float ptval ) ;
 
 int getsumptbin( float sumptval ) ;
 
+void write_btageff_file( TH1* heff, const char* outfile ) ;
+void read_btageff_file( const char* infile, double* eff_array ) ;
+
+void write_weight_sumpt( TH1* hweight, const char* outfile ) ;
+void read_weight_sumpt( const char* infile ) ;
+
    int ncbinspt(9) ;
    double pt_bins[10] = { 0., 20., 30., 40., 60., 80., 100., 150., 200., 500. } ;
 
@@ -46,125 +52,21 @@ int getsumptbin( float sumptval ) ;
 void truthstudy1::Loop()
 {
 
-   if ( strcmp( samplename, "mcatnlo" ) == 0x0 ) {
+   {
+      char eff_filename[10000] ;
 
-      eff_nlcsv_med[0] = 0. ;
-      eff_nlcsv_med[1] = 0.0   ;
-      eff_nlcsv_med[2] = 0.109 ;
-      eff_nlcsv_med[3] = 0.144 ;
-      eff_nlcsv_med[4] = 0.184 ;
-      eff_nlcsv_med[5] = 0.198 ;
-      eff_nlcsv_med[6] = 0.217 ;
-      eff_nlcsv_med[7] = 0.188 ;
-      eff_nlcsv_med[8] = 0.192 ;
+      sprintf( eff_filename, "outputfiles/btag-eff-vs-pt--nextlowest-csv-passmed--%s.txt", samplename ) ;
+      read_btageff_file( eff_filename, eff_nlcsv_med ) ;
 
-      eff_lcsv_loose[0] = 0. ;
-      eff_lcsv_loose[1] = 0.0   ;
-      eff_lcsv_loose[2] = 0.125 ;
-      eff_lcsv_loose[3] = 0.066 ;
-      eff_lcsv_loose[4] = 0.053 ;
-      eff_lcsv_loose[5] = 0.051 ;
-      eff_lcsv_loose[6] = 0.040 ;
-      eff_lcsv_loose[7] = 0.053 ;
-      eff_lcsv_loose[8] = 0.055 ;
+      sprintf( eff_filename, "outputfiles/btag-eff-vs-pt--lowest-csv-passloose--%s.txt", samplename ) ;
+      read_btageff_file( eff_filename, eff_lcsv_loose ) ;
+   }
+   {
+      char weight_filename[10000] ;
+      sprintf( weight_filename, "outputfiles/sumpt-weight--%s.txt", samplename ) ;
+      read_weight_sumpt( weight_filename ) ;
+   }
 
-      weight_sumpt[0] = 1.108 ;
-      weight_sumpt[1] = 0.925 ;
-      weight_sumpt[2] = 0.993 ;
-      weight_sumpt[3] = 1.215 ;
-      weight_sumpt[4] = 1.202 ;
-
-   } // mcatnlo
-
-   if ( strcmp( samplename, "madgraph" ) == 0x0 ) {
-
-      eff_nlcsv_med[0] = 0. ;
-      eff_nlcsv_med[1] = 0.0   ;
-      eff_nlcsv_med[2] = 0.098 ;
-      eff_nlcsv_med[3] = 0.128 ;
-      eff_nlcsv_med[4] = 0.166 ;
-      eff_nlcsv_med[5] = 0.177 ;
-      eff_nlcsv_med[6] = 0.197 ;
-      eff_nlcsv_med[7] = 0.193 ;
-      eff_nlcsv_med[8] = 0.197 ;
-
-      eff_lcsv_loose[0] = 0. ;
-      eff_lcsv_loose[1] = 0.0   ;
-      eff_lcsv_loose[2] = 0.109 ;
-      eff_lcsv_loose[3] = 0.061 ;
-      eff_lcsv_loose[4] = 0.047 ;
-      eff_lcsv_loose[5] = 0.044 ;
-      eff_lcsv_loose[6] = 0.038 ;
-      eff_lcsv_loose[7] = 0.054 ;
-      eff_lcsv_loose[8] = 0.054 ;
-
-      weight_sumpt[0] = 1.156 ;
-      weight_sumpt[1] = 0.924 ;
-      weight_sumpt[2] = 1.009 ;
-      weight_sumpt[3] = 1.153 ;
-      weight_sumpt[4] = 1.365 ;
-
-   } // madgraph
-
-   if ( strcmp( samplename, "sherpa" ) == 0x0 ) {
-
-      eff_nlcsv_med[0] = 0. ;
-      eff_nlcsv_med[1] = 0. ;
-      eff_nlcsv_med[2] = 0.137 ;
-      eff_nlcsv_med[3] = 0.175 ;
-      eff_nlcsv_med[4] = 0.221 ;
-      eff_nlcsv_med[5] = 0.252 ;
-      eff_nlcsv_med[6] = 0.292 ;
-      eff_nlcsv_med[7] = 0.305 ;
-      eff_nlcsv_med[8] = 0.295 ;
-
-      eff_lcsv_loose[0] = 0. ;
-      eff_lcsv_loose[1] = 0. ;
-      eff_lcsv_loose[2] = 0.162 ;
-      eff_lcsv_loose[3] = 0.087 ;
-      eff_lcsv_loose[4] = 0.082 ;
-      eff_lcsv_loose[5] = 0.069 ;
-      eff_lcsv_loose[6] = 0.071 ;
-      eff_lcsv_loose[7] = 0.082 ;
-      eff_lcsv_loose[8] = 0.088 ;
-
-      weight_sumpt[0] = 0.872 ;
-      weight_sumpt[1] = 0.868 ;
-      weight_sumpt[2] = 0.985;
-      weight_sumpt[3] = 1.11 ;
-      weight_sumpt[4] = 1.52 ;
-
-   } // sherpa
-
-   if ( strcmp( samplename, "powheg" ) == 0x0 ) {
-
-      eff_nlcsv_med[0] = 0. ;
-      eff_nlcsv_med[1] = 0. ;
-      eff_nlcsv_med[2] = 0.101 ;
-      eff_nlcsv_med[3] = 0.131 ;
-      eff_nlcsv_med[4] = 0.133 ;
-      eff_nlcsv_med[5] = 0.172 ;
-      eff_nlcsv_med[6] = 0.181 ;
-      eff_nlcsv_med[7] = 0.175 ;
-      eff_nlcsv_med[8] = 0.212 ;
-
-      eff_lcsv_loose[0] = 0. ;
-      eff_lcsv_loose[1] = 0. ;
-      eff_lcsv_loose[2] = 0.110 ;
-      eff_lcsv_loose[3] = 0.060 ;
-      eff_lcsv_loose[4] = 0.044 ;
-      eff_lcsv_loose[5] = 0.038 ;
-      eff_lcsv_loose[6] = 0.037 ;
-      eff_lcsv_loose[7] = 0.035 ;
-      eff_lcsv_loose[8] = 0.046 ;
-
-      weight_sumpt[0] = 1.347 ;
-      weight_sumpt[1] = 0.968 ;
-      weight_sumpt[2] = 0.925 ;
-      weight_sumpt[3] = 1.107 ;
-      weight_sumpt[4] = 0.865 ;
-
-   } // powheg
 
    gStyle -> SetPadBottomMargin(0.25) ;
    gStyle -> SetOptStat("eMR") ;
@@ -790,18 +692,32 @@ void truthstudy1::Loop()
 
 
 
-   TH1F* h_sumpt = new TH1F("h_sumpt", "sum pt of 4 jets", 10, 0., 1000. ) ;
-   TH1F* h_sumpt__2b = new TH1F("h_sumpt__2b", "sum pt of 4 jets, 2b", 10, 0., 1000. ) ;
-   TH1F* h_sumpt__4b = new TH1F("h_sumpt__4b", "sum pt of 4 jets, 4b", 10, 0., 1000. ) ;
-   TH1F* h_sumpt__2b_ms40 = new TH1F("h_sumpt__2b_ms40", "sum pt of 4 jets, 2b, METsig>40", 10, 0., 1000. ) ;
-   TH1F* h_sumpt__4b_ms40 = new TH1F("h_sumpt__4b_ms40", "sum pt of 4 jets, 4b, METsig>40", 10, 0., 1000. ) ;
-   TH1F* h_sumpt__2b_ms85 = new TH1F("h_sumpt__2b_ms85", "sum pt of 4 jets, 2b, METsig>85", 10, 0., 1000. ) ;
-   TH1F* h_sumpt__4b_ms85 = new TH1F("h_sumpt__4b_ms85", "sum pt of 4 jets, 4b, METsig>85", 10, 0., 1000. ) ;
-   TH1F* h_sumpt__2b_4j = new TH1F("h_sumpt__2b_4j", "sum pt of 4 jets, 2b, 4j", 10, 0., 1000. ) ;
-   TH1F* h_sumpt__4b_4j = new TH1F("h_sumpt__4b_4j", "sum pt of 4 jets, 4b, 4j", 10, 0., 1000. ) ;
-   TH1F* h_sumpt__2b_5j = new TH1F("h_sumpt__2b_5j", "sum pt of 4 jets, 2b, 5j", 10, 0., 1000. ) ;
-   TH1F* h_sumpt__4b_5j = new TH1F("h_sumpt__4b_5j", "sum pt of 4 jets, 4b, 5j", 10, 0., 1000. ) ;
-   TH1F* h_sumpt__weight = new TH1F("h_sumpt__weight", "sum pt of 4 jets, weight", 10, 0., 1000. ) ;
+ //TH1F* h_sumpt = new TH1F("h_sumpt", "sum pt of 4 jets", 10, 0., 1000. ) ;
+ //TH1F* h_sumpt__2b = new TH1F("h_sumpt__2b", "sum pt of 4 jets, 2b", 10, 0., 1000. ) ;
+ //TH1F* h_sumpt__4b = new TH1F("h_sumpt__4b", "sum pt of 4 jets, 4b", 10, 0., 1000. ) ;
+ //TH1F* h_sumpt__2b_ms40 = new TH1F("h_sumpt__2b_ms40", "sum pt of 4 jets, 2b, METsig>40", 10, 0., 1000. ) ;
+ //TH1F* h_sumpt__4b_ms40 = new TH1F("h_sumpt__4b_ms40", "sum pt of 4 jets, 4b, METsig>40", 10, 0., 1000. ) ;
+ //TH1F* h_sumpt__2b_ms85 = new TH1F("h_sumpt__2b_ms85", "sum pt of 4 jets, 2b, METsig>85", 10, 0., 1000. ) ;
+ //TH1F* h_sumpt__4b_ms85 = new TH1F("h_sumpt__4b_ms85", "sum pt of 4 jets, 4b, METsig>85", 10, 0., 1000. ) ;
+ //TH1F* h_sumpt__2b_4j = new TH1F("h_sumpt__2b_4j", "sum pt of 4 jets, 2b, 4j", 10, 0., 1000. ) ;
+ //TH1F* h_sumpt__4b_4j = new TH1F("h_sumpt__4b_4j", "sum pt of 4 jets, 4b, 4j", 10, 0., 1000. ) ;
+ //TH1F* h_sumpt__2b_5j = new TH1F("h_sumpt__2b_5j", "sum pt of 4 jets, 2b, 5j", 10, 0., 1000. ) ;
+ //TH1F* h_sumpt__4b_5j = new TH1F("h_sumpt__4b_5j", "sum pt of 4 jets, 4b, 5j", 10, 0., 1000. ) ;
+ //TH1F* h_sumpt__weight = new TH1F("h_sumpt__weight", "sum pt of 4 jets, weight", 10, 0., 1000. ) ;
+
+
+   TH1F* h_sumpt = new TH1F("h_sumpt", "sum pt of 4 jets", nbinssumpt, sumpt_bins ) ;
+   TH1F* h_sumpt__2b = new TH1F("h_sumpt__2b", "sum pt of 4 jets, 2b", nbinssumpt, sumpt_bins ) ;
+   TH1F* h_sumpt__4b = new TH1F("h_sumpt__4b", "sum pt of 4 jets, 4b", nbinssumpt, sumpt_bins ) ;
+   TH1F* h_sumpt__2b_ms40 = new TH1F("h_sumpt__2b_ms40", "sum pt of 4 jets, 2b, METsig>40", nbinssumpt, sumpt_bins ) ;
+   TH1F* h_sumpt__4b_ms40 = new TH1F("h_sumpt__4b_ms40", "sum pt of 4 jets, 4b, METsig>40", nbinssumpt, sumpt_bins ) ;
+   TH1F* h_sumpt__2b_ms85 = new TH1F("h_sumpt__2b_ms85", "sum pt of 4 jets, 2b, METsig>85", nbinssumpt, sumpt_bins ) ;
+   TH1F* h_sumpt__4b_ms85 = new TH1F("h_sumpt__4b_ms85", "sum pt of 4 jets, 4b, METsig>85", nbinssumpt, sumpt_bins ) ;
+   TH1F* h_sumpt__2b_4j = new TH1F("h_sumpt__2b_4j", "sum pt of 4 jets, 2b, 4j", nbinssumpt, sumpt_bins ) ;
+   TH1F* h_sumpt__4b_4j = new TH1F("h_sumpt__4b_4j", "sum pt of 4 jets, 4b, 4j", nbinssumpt, sumpt_bins ) ;
+   TH1F* h_sumpt__2b_5j = new TH1F("h_sumpt__2b_5j", "sum pt of 4 jets, 2b, 5j", nbinssumpt, sumpt_bins ) ;
+   TH1F* h_sumpt__4b_5j = new TH1F("h_sumpt__4b_5j", "sum pt of 4 jets, 4b, 5j", nbinssumpt, sumpt_bins ) ;
+   TH1F* h_sumpt__weight = new TH1F("h_sumpt__weight", "sum pt of 4 jets, weight", nbinssumpt, sumpt_bins ) ;
 
 
 
@@ -1252,7 +1168,7 @@ void truthstudy1::Loop()
 
 
       //--- njets requirement.
-      if ( njets30<4 || njets30>5 ) continue ;
+      if ( njets20<4 || njets20>5 ) continue ;
 
       //--- lepton veto
       if ( ! (nMuons==0&&nElectrons==0&&nIsoTracks15_005_03==0&&nIsoTracks5_005_03<2&&nTausLoose==0 ) ) continue ;
@@ -1266,12 +1182,17 @@ void truthstudy1::Loop()
       //--- max Dr cut
       if ( ! (deltaRmax_hh<2.2) ) continue ;
 
+      //--- minDeltaPhi30 cut
+      if ( minDeltaPhi30 < 0.3 ) continue ;
+
+
+
       if ( pass2b ) { h_maxdr_pc__2b -> Fill( deltaRmax_hh ) ; }
       if ( pass4b ) { h_maxdr_pc__4b -> Fill( deltaRmax_hh ) ; }
-      if ( njets30 == 4 && pass2b ) { h_maxdr_pc__2b_4j -> Fill( deltaRmax_hh ) ; }
-      if ( njets30 == 4 && pass4b ) { h_maxdr_pc__4b_4j -> Fill( deltaRmax_hh ) ; }
-      if ( njets30 == 5 && pass2b ) { h_maxdr_pc__2b_5j -> Fill( deltaRmax_hh ) ; }
-      if ( njets30 == 5 && pass4b ) { h_maxdr_pc__4b_5j -> Fill( deltaRmax_hh ) ; }
+      if ( njets20 == 4 && pass2b ) { h_maxdr_pc__2b_4j -> Fill( deltaRmax_hh ) ; }
+      if ( njets20 == 4 && pass4b ) { h_maxdr_pc__4b_4j -> Fill( deltaRmax_hh ) ; }
+      if ( njets20 == 5 && pass2b ) { h_maxdr_pc__2b_5j -> Fill( deltaRmax_hh ) ; }
+      if ( njets20 == 5 && pass4b ) { h_maxdr_pc__4b_5j -> Fill( deltaRmax_hh ) ; }
       if ( pass2b ) { h_maxdr_pc__2b_ptrw -> Fill( deltaRmax_hh, ptw2b ) ; }
 
 
@@ -1306,7 +1227,7 @@ void truthstudy1::Loop()
       if ( pass2b && ismsb  ) { h_metsig_msb_2b_sptrw  -> Fill( metsig_var, sptw2b ) ; }
 
 
-      if ( njets30 == 4 ) {
+      if ( njets20 == 4 ) {
          if ( pass2b && ismsig ) { h_metsig_msig_2b_4j -> Fill( metsig_var ) ; }
          if ( pass3b && ismsig ) { h_metsig_msig_3b_4j -> Fill( metsig_var ) ; }
          if ( pass4b && ismsig ) { h_metsig_msig_4b_4j -> Fill( metsig_var ) ; }
@@ -1316,7 +1237,7 @@ void truthstudy1::Loop()
          if ( pass2b && ismsig ) { h_metsig_msig_2b_4j_ptrw -> Fill( metsig_var, ptw2b ) ; }
          if ( pass2b && ismsb  ) { h_metsig_msb_2b_4j_ptrw  -> Fill( metsig_var, ptw2b ) ; }
       }
-      if ( njets30 == 5 ) {
+      if ( njets20 == 5 ) {
          if ( pass2b && ismsig ) { h_metsig_msig_2b_5j -> Fill( metsig_var ) ; }
          if ( pass3b && ismsig ) { h_metsig_msig_3b_5j -> Fill( metsig_var ) ; }
          if ( pass4b && ismsig ) { h_metsig_msig_4b_5j -> Fill( metsig_var ) ; }
@@ -1399,10 +1320,10 @@ void truthstudy1::Loop()
       h_sumpt -> Fill( sumpt ) ;
       if ( pass2b ) h_sumpt__2b -> Fill( sumpt ) ;
       if ( pass4b ) h_sumpt__4b -> Fill( sumpt ) ;
-      if ( njets30 == 4 && pass2b ) h_sumpt__2b_4j -> Fill( sumpt ) ;
-      if ( njets30 == 4 && pass4b ) h_sumpt__4b_4j -> Fill( sumpt ) ;
-      if ( njets30 == 5 && pass2b ) h_sumpt__2b_5j -> Fill( sumpt ) ;
-      if ( njets30 == 5 && pass4b ) h_sumpt__4b_5j -> Fill( sumpt ) ;
+      if ( njets20 == 4 && pass2b ) h_sumpt__2b_4j -> Fill( sumpt ) ;
+      if ( njets20 == 4 && pass4b ) h_sumpt__4b_4j -> Fill( sumpt ) ;
+      if ( njets20 == 5 && pass2b ) h_sumpt__2b_5j -> Fill( sumpt ) ;
+      if ( njets20 == 5 && pass4b ) h_sumpt__4b_5j -> Fill( sumpt ) ;
       if ( metsig_var > 40 ) {
          if ( pass2b ) h_sumpt__2b_ms40 -> Fill( sumpt ) ;
          if ( pass4b ) h_sumpt__4b_ms40 -> Fill( sumpt ) ;
@@ -1414,18 +1335,18 @@ void truthstudy1::Loop()
 
 
 
-      if ( pass2b ) { h_njets_2b -> Fill( njets30 ) ; }
-      if ( pass3b ) { h_njets_3b -> Fill( njets30 ) ; }
-      if ( pass4b ) { h_njets_4b -> Fill( njets30 ) ; }
+      if ( pass2b ) { h_njets_2b -> Fill( njets20 ) ; }
+      if ( pass3b ) { h_njets_3b -> Fill( njets20 ) ; }
+      if ( pass4b ) { h_njets_4b -> Fill( njets20 ) ; }
       if ( metsig_var > 40 ) {
-         if ( pass2b ) { h_njets_2b_ms40 -> Fill( njets30 ) ; }
-         if ( pass3b ) { h_njets_3b_ms40 -> Fill( njets30 ) ; }
-         if ( pass4b ) { h_njets_4b_ms40 -> Fill( njets30 ) ; }
+         if ( pass2b ) { h_njets_2b_ms40 -> Fill( njets20 ) ; }
+         if ( pass3b ) { h_njets_3b_ms40 -> Fill( njets20 ) ; }
+         if ( pass4b ) { h_njets_4b_ms40 -> Fill( njets20 ) ; }
       }
       if ( metsig_var > 85 ) {
-         if ( pass2b ) { h_njets_2b_ms85 -> Fill( njets30 ) ; }
-         if ( pass3b ) { h_njets_3b_ms85 -> Fill( njets30 ) ; }
-         if ( pass4b ) { h_njets_4b_ms85 -> Fill( njets30 ) ; }
+         if ( pass2b ) { h_njets_2b_ms85 -> Fill( njets20 ) ; }
+         if ( pass3b ) { h_njets_3b_ms85 -> Fill( njets20 ) ; }
+         if ( pass4b ) { h_njets_4b_ms85 -> Fill( njets20 ) ; }
       }
 
 
@@ -1506,7 +1427,7 @@ void truthstudy1::Loop()
       if ( pass2b ) h_evtcode_2b -> Fill( evtcode ) ;
       if ( pass4b ) h_evtcode_4b -> Fill( evtcode ) ;
 
-      if ( njets30 == 4 ) {
+      if ( njets20 == 4 ) {
 
          if ( pass2b ) h_evtcode_2b_4j -> Fill( evtcode ) ;
          if ( pass4b ) h_evtcode_4b_4j -> Fill( evtcode ) ;
@@ -1535,7 +1456,7 @@ void truthstudy1::Loop()
          }
 
       }
-      if ( njets30 == 5 ) {
+      if ( njets20 == 5 ) {
 
          if ( pass2b ) h_evtcode_2b_5j -> Fill( evtcode ) ;
          if ( pass4b ) h_evtcode_4b_5j -> Fill( evtcode ) ;
@@ -1791,7 +1712,7 @@ void truthstudy1::Loop()
 
 
 
-      if ( njets30 == 4 ) {
+      if ( njets20 == 4 ) {
          if ( b1hind == 1 ) { h_mh_all__b1_4j -> Fill( higgsMbb1MassDiff ) ; } else { h_mh_all__b1_4j -> Fill( higgsMbb2MassDiff ) ; }
          if ( b2hind == 1 ) { h_mh_all__b2_4j -> Fill( higgsMbb1MassDiff ) ; } else { h_mh_all__b2_4j -> Fill( higgsMbb2MassDiff ) ; }
          h_mh_all__sptl_4j -> Fill( mh_sptl ) ;
@@ -1820,7 +1741,7 @@ void truthstudy1::Loop()
 
 
 
-      if ( njets30 == 5 ) {
+      if ( njets20 == 5 ) {
          if ( b1hind == 1 ) { h_mh_all__b1_5j -> Fill( higgsMbb1MassDiff ) ; } else { h_mh_all__b1_5j -> Fill( higgsMbb2MassDiff ) ; }
          if ( b2hind == 1 ) { h_mh_all__b2_5j -> Fill( higgsMbb1MassDiff ) ; } else { h_mh_all__b2_5j -> Fill( higgsMbb2MassDiff ) ; }
          h_mh_all__sptl_5j -> Fill( mh_sptl ) ;
@@ -2503,7 +2424,7 @@ void truthstudy1::Loop()
       legend -> Draw() ;
 
       char fname[10000] ;
-      sprintf( fname, "outputfiles/ratio-vs-met-%s.pdf", samplename ) ;
+      sprintf( fname, "outputfiles/ratio-vs-met-w3b-%s.pdf", samplename ) ;
       c_ratio_vs_met -> SaveAs( fname ) ;
    }
 
@@ -2708,7 +2629,21 @@ void truthstudy1::Loop()
 
  //----
 
+   {
+      char eff_filename[10000] ;
 
+      sprintf( eff_filename, "outputfiles/btag-eff-vs-pt--nextlowest-csv-passmed--%s.txt", samplename ) ;
+      write_btageff_file( h_pt_nextlowest_csv_cb__passmed_eff, eff_filename ) ;
+
+      sprintf( eff_filename, "outputfiles/btag-eff-vs-pt--lowest-csv-passloose--%s.txt", samplename ) ;
+      write_btageff_file( h_pt_lowest_csv_cb__passloose_eff, eff_filename ) ;
+   }
+
+   {
+      char weight_filename[10000] ;
+      sprintf( weight_filename, "outputfiles/sumpt-weight--%s.txt", samplename ) ;
+      write_weight_sumpt( h_sumpt__weight, weight_filename ) ;
+   }
 
    gStyle -> SetOptStat("eMR") ;
 
@@ -3120,10 +3055,14 @@ void truthstudy1::draw_pt_canvas( const char* cname, const char* ctitle, TH1* hp
 
 
     if ( setmax ) {
-       hptcsv1_2b -> SetMaximum( 0.40 ) ;
-       hptcsv2_2b -> SetMaximum( 0.40 ) ;
-       hptcsv3_2b -> SetMaximum( 0.40 ) ;
-       hptcsv4_2b -> SetMaximum( 0.40 ) ;
+       hptcsv1_2b -> SetMaximum( 0.60 ) ;
+       hptcsv2_2b -> SetMaximum( 0.60 ) ;
+       hptcsv3_2b -> SetMaximum( 0.60 ) ;
+       hptcsv4_2b -> SetMaximum( 0.60 ) ;
+       hptcsv1_4b -> SetMaximum( 0.60 ) ;
+       hptcsv2_4b -> SetMaximum( 0.60 ) ;
+       hptcsv3_4b -> SetMaximum( 0.60 ) ;
+       hptcsv4_4b -> SetMaximum( 0.60 ) ;
     }
 
    hptcsv1_2b -> SetXTitle("jet pt (GeV)") ;
@@ -3292,10 +3231,14 @@ void truthstudy1::draw_pt_canvas_h( const char* cname, const char* ctitle, TH1* 
 
 
     if ( setmax ) {
-       hptcsv1_2b -> SetMaximum( 0.40 ) ;
-       hptcsv2_2b -> SetMaximum( 0.40 ) ;
-       hptcsv3_2b -> SetMaximum( 0.40 ) ;
-       hptcsv4_2b -> SetMaximum( 0.40 ) ;
+       hptcsv1_2b -> SetMaximum( 0.60 ) ;
+       hptcsv2_2b -> SetMaximum( 0.60 ) ;
+       hptcsv3_2b -> SetMaximum( 0.60 ) ;
+       hptcsv4_2b -> SetMaximum( 0.60 ) ;
+       hptcsv1_4b -> SetMaximum( 0.60 ) ;
+       hptcsv2_4b -> SetMaximum( 0.60 ) ;
+       hptcsv3_4b -> SetMaximum( 0.60 ) ;
+       hptcsv4_4b -> SetMaximum( 0.60 ) ;
     }
 
    hptcsv1_2b -> SetXTitle("jet pt (GeV)") ;
@@ -3477,10 +3420,14 @@ void truthstudy1::draw_pt_canvas3( const char* cname, const char* ctitle, TH1* h
 
 
     if ( setmax ) {
-       hptcsv1_2b -> SetMaximum( 0.40 ) ;
-       hptcsv2_2b -> SetMaximum( 0.40 ) ;
-       hptcsv3_2b -> SetMaximum( 0.40 ) ;
-       hptcsv4_2b -> SetMaximum( 0.40 ) ;
+       hptcsv1_2b -> SetMaximum( 0.60 ) ;
+       hptcsv2_2b -> SetMaximum( 0.60 ) ;
+       hptcsv3_2b -> SetMaximum( 0.60 ) ;
+       hptcsv4_2b -> SetMaximum( 0.60 ) ;
+       hptcsv1_4b -> SetMaximum( 0.60 ) ;
+       hptcsv2_4b -> SetMaximum( 0.60 ) ;
+       hptcsv3_4b -> SetMaximum( 0.60 ) ;
+       hptcsv4_4b -> SetMaximum( 0.60 ) ;
     }
 
    hptcsv1_2b -> SetXTitle("jet pt (GeV)") ;
@@ -3964,6 +3911,79 @@ void fillWeightHist( TH1* h2b, TH1* h4b, TH1* hw ) {
 
 //====================================================
 
+void write_btageff_file( TH1* heff, const char* outfile ) {
+
+   if ( heff == 0x0 ) return ;
+
+   FILE* ofp = fopen( outfile, "w" ) ;
+
+   for ( int bi=1; bi<=heff->GetNbinsX(); bi++ ) {
+      fprintf( ofp, "%6.4f\n", heff->GetBinContent(bi) ) ;
+   } // bi.
+
+   fclose( ofp ) ;
+
+}
+
+//====================================================
+
+void read_btageff_file( const char* infile, double* eff_array ) {
+
+   FILE* infp ;
+   if ( (infp=fopen( infile,"r"))==NULL ) {
+      printf("\n\n\n *** problem opening file %s\n\n\n", infile ) ;
+      return ;
+   }
+
+   printf("\n") ;
+   for ( int bi=0; bi<ncbinspt; bi++ ) {
+      fscanf( infp, "%lf", &eff_array[bi] ) ;
+      printf( "%50s : %2d : %f\n", infile, bi, eff_array[bi] ) ;
+   }
+   printf("\n") ;
 
 
+   fclose( infp ) ;
+
+}
+
+//====================================================
+
+void write_weight_sumpt( TH1* hweight, const char* outfile ) {
+
+   if ( hweight == 0x0 ) return ;
+
+   FILE* ofp = fopen( outfile, "w" ) ;
+
+   for ( int bi=1; bi<=hweight->GetNbinsX(); bi++ ) {
+      fprintf( ofp, "%6.4f\n", hweight->GetBinContent(bi) ) ;
+   } // bi.
+
+   fclose( ofp ) ;
+
+}
+
+//====================================================
+
+void read_weight_sumpt( const char* infile ) {
+
+   FILE* infp ;
+   if ( (infp=fopen( infile,"r"))==NULL ) {
+      printf("\n\n\n *** problem opening file %s\n\n\n", infile ) ;
+      return ;
+   }
+
+   printf("\n") ;
+   for ( int bi=0; bi<nbinssumpt; bi++ ) {
+      fscanf( infp, "%lf", &weight_sumpt[bi] ) ;
+      printf( "%50s : %2d : %f\n", infile, bi, weight_sumpt[bi] ) ;
+   }
+   printf("\n") ;
+
+
+   fclose( infp ) ;
+
+}
+
+//====================================================
 

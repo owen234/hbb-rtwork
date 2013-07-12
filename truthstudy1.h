@@ -181,19 +181,20 @@ truthstudy1::truthstudy1( const char* samplename_arg ) : fChain(0)
    TChain * chain(0x0) ;
    if ( strcmp( samplename, "madgraph" ) == 0 ) {
       chain = new TChain("reducedTree","");
-      //chain->Add("/data/cms/hadronic-susy-bjets/hbb/reduced-trees-july03-2013/reducedTree.CSVM_PF2PATjets_JES0_JER0_PFMETTypeI_METunc0_PUunc0_BTagEff05_HLTEff0.TTJets_SemiLeptMGDecays_8TeV-madgraph-tauola_Summer12_DR53X-PU_S10_START53_V7C-v1_AODSIM_UCSB1800_v69-slimskim.root/reducedTree");
-      //chain->Add("../reduced-trees-july03-2013/reducedTree.CSVM_PF2PATjets_JES0_JER0_PFMETTypeI_METunc0_PUunc0_BTagEff05_HLTEff0.TTJets_SemiLeptMGDecays_8TeV-madgraph-tauola_Summer12_DR53X-PU_S10_START53_V7C-v1_AODSIM_UCSB1800_v69-slimskim.root/reducedTree");
-      chain->Add("../reduced-trees-july08-2013/reducedTree.CSVM_PF2PATjets_JES0_JER0_PFMETTypeI_METunc0_PUunc0_BTagEff05_HLTEff0.TTJets_SemiLeptMGDecays_8TeV-madgraph-tauola_Summer12_DR53X-PU_S10_START53_V7C-v1_AODSIM_UCSB1800_v69-slimskim.root/reducedTree");
+      //chain->Add("../reduced-trees-july08-2013/reducedTree.CSVM_PF2PATjets_JES0_JER0_PFMETTypeI_METunc0_PUunc0_BTagEff05_HLTEff0.TTJets_SemiLeptMGDecays_8TeV-madgraph-tauola_Summer12_DR53X-PU_S10_START53_V7C-v1_AODSIM_UCSB1800_v69-slimskim.root/reducedTree");
+      chain->Add("../reduced-trees-july11-2013-pt20/reducedTree.CSVM_PF2PATjets_JES0_JER0_PFMETTypeI_METunc0_PUunc0_BTagEff05_HLTEff0.TTJets_SemiLeptMGDecays_8TeV-madgraph-tauola_Summer12_DR53X-PU_S10_START53_V7C-v1_AODSIM_UCSB1800_v69-slimskim.root/reducedTree");
    } else if ( strcmp( samplename, "powheg" ) == 0 ) {
       chain = new TChain("reducedTree","");
-      chain->Add("../reduced-trees-july08-2013/reducedTree.CSVM_PF2PATjets_JES0_JER0_PFMETTypeI_METunc0_PUunc0_BTagEff05_HLTEff0.TT_CT10_TuneZ2star_8TeV-powheg-tauola_Summer12_DR53X-PU_S10_START53_V7A-v2_AODSIM_UCSB1838_v69-slimskim.root/reducedTree");
+      //chain->Add("../reduced-trees-july08-2013/reducedTree.CSVM_PF2PATjets_JES0_JER0_PFMETTypeI_METunc0_PUunc0_BTagEff05_HLTEff0.TT_CT10_TuneZ2star_8TeV-powheg-tauola_Summer12_DR53X-PU_S10_START53_V7A-v2_AODSIM_UCSB1838_v69-slimskim.root/reducedTree");
+      chain->Add("../reduced-trees-july11-2013-pt20/reducedTree.CSVM_PF2PATjets_JES0_JER0_PFMETTypeI_METunc0_PUunc0_BTagEff05_HLTEff0.TT_CT10_TuneZ2star_8TeV-powheg-tauola_Summer12_DR53X-PU_S10_START53_V7A-v2_AODSIM_UCSB1838_v69-slimskim.root/reducedTree");
    } else if ( strcmp( samplename, "mcatnlo" ) == 0 ) {
       chain = new TChain("reducedTree","");
-      chain->Add("../reduced-trees-july08-2013/reducedTree.CSVM_PF2PATjets_JES0_JER0_PFMETTypeI_METunc0_PUunc0_BTagEff05_HLTEff0.TT_8TeV-mcatnlo_Summer12_DR53X-PU_S10_START53_V7A-v1_AODSIM_UCSB1837_v69-slimskim.root/reducedTree");
+      //chain->Add("../reduced-trees-july08-2013/reducedTree.CSVM_PF2PATjets_JES0_JER0_PFMETTypeI_METunc0_PUunc0_BTagEff05_HLTEff0.TT_8TeV-mcatnlo_Summer12_DR53X-PU_S10_START53_V7A-v1_AODSIM_UCSB1837_v69-slimskim.root/reducedTree");
+      chain->Add("../reduced-trees-july11-2013-pt20/reducedTree.CSVM_PF2PATjets_JES0_JER0_PFMETTypeI_METunc0_PUunc0_BTagEff05_HLTEff0.TT_8TeV-mcatnlo_Summer12_DR53X-PU_S10_START53_V7A-v1_AODSIM_UCSB1837_v69-slimskim.root/reducedTree");
    } else if ( strcmp( samplename, "sherpa" ) == 0 ) {
       chain = new TChain("reducedTree","");
-      //chain->Add("/data/cms/hadronic-susy-bjets/hbb/reduced-trees-july03-2013/reducedTree.CSVM_PF2PATjets_JES0_JER0_PFMETTypeI_METunc0_PUunc0_BTagEff05_HLTEff0.TTJets_SemiLeptDecays_8TeV-sherpa_Summer12_DR53X-PU_S10_START53_V19-v1_AODSIM_UCSB1806_v69-slimskim.root/reducedTree");
-      chain->Add("../reduced-trees-july03-2013/reducedTree.CSVM_PF2PATjets_JES0_JER0_PFMETTypeI_METunc0_PUunc0_BTagEff05_HLTEff0.TTJets_SemiLeptDecays_8TeV-sherpa_Summer12_DR53X-PU_S10_START53_V19-v1_AODSIM_UCSB1806_v69-slimskim.root/reducedTree");
+      //chain->Add("../reduced-trees-july03-2013/reducedTree.CSVM_PF2PATjets_JES0_JER0_PFMETTypeI_METunc0_PUunc0_BTagEff05_HLTEff0.TTJets_SemiLeptDecays_8TeV-sherpa_Summer12_DR53X-PU_S10_START53_V19-v1_AODSIM_UCSB1806_v69-slimskim.root/reducedTree");
+      chain->Add("../reduced-trees-july11-2013-pt20/reducedTree.CSVM_PF2PATjets_JES0_JER0_PFMETTypeI_METunc0_PUunc0_BTagEff05_HLTEff0.TTJets_SemiLeptDecays_8TeV-sherpa_Summer12_DR53X-PU_S10_START53_V19-v1_AODSIM_UCSB1806_v69-slimskim.root/reducedTree");
    }
    if ( chain == 0x0 ) return ;
 
