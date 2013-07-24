@@ -75,6 +75,8 @@
 
         //--- Kinematic vars
          inReducedTree -> SetBranchStatus("MET",1) ;
+         inReducedTree -> SetBranchStatus("HT",1) ;
+         inReducedTree -> SetBranchStatus("HT30",1) ;
          inReducedTree -> SetBranchStatus("METsig",1) ;
          inReducedTree -> SetBranchStatus("METsig_2012",1) ;
 
@@ -84,6 +86,7 @@
          inReducedTree -> SetBranchStatus("weight3",1) ;
          inReducedTree -> SetBranchStatus("PUweight",1) ;
          inReducedTree -> SetBranchStatus("nGoodPV",1) ;
+         inReducedTree -> SetBranchStatus("m0",1) ;
 
         //--- jet pt
          inReducedTree -> SetBranchStatus("jetpt1",1) ;
