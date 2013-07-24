@@ -14,9 +14,9 @@
 
 
  //----------------
-   int  nbgcomps(3) ;
-   char bgcompname[3][100] = { "tt", "znn", "qcd" } ;
-   TChain* bgcompchain[3] ;
+   int  nbgcomps(4) ;
+   char bgcompname[4][100] = { "tt", "znn", "qcd", "tthad" } ;
+   TChain* bgcompchain[4] ;
  //----------------
 
    float dataIntLumiIPB(20000.) ;
@@ -28,6 +28,8 @@
 
 
       gStyle -> SetOptStat(0) ;
+
+      //gStyle -> SetOptLogy(1) ;
 
 
       double met_bin_edges_metsig[8] ;
@@ -124,6 +126,10 @@
       bgcompchain[compIndex] -> Add( pathandfile ) ;
       compIndex++ ;
 
+     //--- hadronic ttbar
+      sprintf( pathandfile, "%s/reducedTree.CSVM_PF2PATjets_JES0_JER0_PFMETTypeI_METunc0_PUunc0_BTagEff05_HLTEff0.TTJets_HadronicMGDecays_8TeV-madgraph_Summer12_DR53X-PU_S10_START53_V7A_ext-v1_AODSIM_UCSB1848_v69-slimskim.root", rtdir ) ;
+      bgcompchain[compIndex] -> Add( pathandfile ) ;
+      compIndex++ ;
 
 
       float signal_weight = 1. ;
@@ -328,6 +334,67 @@
       h_metsig2012_all_signal -> Sumw2() ;
       h_met_all_signal -> Sumw2() ;
       h_metovsqrtht_all_signal -> Sumw2() ;
+
+
+
+      TH1F* h_metsig_all_tthad      = new TH1F("h_metsig_all_tthad"     , "METsig, all, tthad"     , bins_of_met, met_bin_edges_metsig ) ;
+      TH1F* h_metsig2012_all_tthad  = new TH1F("h_metsig2012_all_tthad" , "metsig2012, all, tthad" , bins_of_met, met_bin_edges_metsig2012 ) ;
+      TH1F* h_met_all_tthad         = new TH1F("h_met_all_tthad"        , "met, all, tthad"        , bins_of_met, met_bin_edges_met ) ;
+      TH1F* h_metovsqrtht_all_tthad = new TH1F("h_metovsqrtht_all_tthad", "metovsqrtht, all, tthad", bins_of_met, met_bin_edges_metovsqrtht ) ;
+
+      h_metsig_all_tthad -> Sumw2() ;
+      h_metsig2012_all_tthad -> Sumw2() ;
+      h_met_all_tthad -> Sumw2() ;
+      h_metovsqrtht_all_tthad -> Sumw2() ;
+
+
+      TH1F* h_metsig_2b_tthad      = new TH1F("h_metsig_2b_tthad"     , "METsig, 2b, tthad"     , bins_of_met, met_bin_edges_metsig ) ;
+      TH1F* h_metsig2012_2b_tthad  = new TH1F("h_metsig2012_2b_tthad" , "metsig2012, 2b, tthad" , bins_of_met, met_bin_edges_metsig2012 ) ;
+      TH1F* h_met_2b_tthad         = new TH1F("h_met_2b_tthad"        , "met, 2b, tthad"        , bins_of_met, met_bin_edges_met ) ;
+      TH1F* h_metovsqrtht_2b_tthad = new TH1F("h_metovsqrtht_2b_tthad", "metovsqrtht, 2b, tthad", bins_of_met, met_bin_edges_metovsqrtht ) ;
+
+      h_metsig_2b_tthad -> Sumw2() ;
+      h_metsig2012_2b_tthad -> Sumw2() ;
+      h_met_2b_tthad -> Sumw2() ;
+      h_metovsqrtht_2b_tthad -> Sumw2() ;
+
+
+
+      TH1F* h_metsig_3b_tthad      = new TH1F("h_metsig_3b_tthad"     , "METsig, 3b, tthad"     , bins_of_met, met_bin_edges_metsig ) ;
+      TH1F* h_metsig2012_3b_tthad  = new TH1F("h_metsig2012_3b_tthad" , "metsig2012, 3b, tthad" , bins_of_met, met_bin_edges_metsig2012 ) ;
+      TH1F* h_met_3b_tthad         = new TH1F("h_met_3b_tthad"        , "met, 3b, tthad"        , bins_of_met, met_bin_edges_met ) ;
+      TH1F* h_metovsqrtht_3b_tthad = new TH1F("h_metovsqrtht_3b_tthad", "metovsqrtht, 3b, tthad", bins_of_met, met_bin_edges_metovsqrtht ) ;
+
+      h_metsig_3b_tthad -> Sumw2() ;
+      h_metsig2012_3b_tthad -> Sumw2() ;
+      h_met_3b_tthad -> Sumw2() ;
+      h_metovsqrtht_3b_tthad -> Sumw2() ;
+
+
+
+      TH1F* h_metsig_4b_tthad      = new TH1F("h_metsig_4b_tthad"     , "METsig, 4b, tthad"     , bins_of_met, met_bin_edges_metsig ) ;
+      TH1F* h_metsig2012_4b_tthad  = new TH1F("h_metsig2012_4b_tthad" , "metsig2012, 4b, tthad" , bins_of_met, met_bin_edges_metsig2012 ) ;
+      TH1F* h_met_4b_tthad         = new TH1F("h_met_4b_tthad"        , "met, 4b, tthad"        , bins_of_met, met_bin_edges_met ) ;
+      TH1F* h_metovsqrtht_4b_tthad = new TH1F("h_metovsqrtht_4b_tthad", "metovsqrtht, 4b, tthad", bins_of_met, met_bin_edges_metovsqrtht ) ;
+
+      h_metsig_4b_tthad -> Sumw2() ;
+      h_metsig2012_4b_tthad -> Sumw2() ;
+      h_met_4b_tthad -> Sumw2() ;
+      h_metovsqrtht_4b_tthad -> Sumw2() ;
+
+
+
+      TH1F* h_metsig_mindphicut_tthad      = new TH1F("h_metsig_mindphicut_tthad"     , "METsig, mindphicut, tthad"     , bins_of_met, met_bin_edges_metsig ) ;
+      TH1F* h_metsig2012_mindphicut_tthad  = new TH1F("h_metsig2012_mindphicut_tthad" , "metsig2012, mindphicut, tthad" , bins_of_met, met_bin_edges_metsig2012 ) ;
+      TH1F* h_met_mindphicut_tthad         = new TH1F("h_met_mindphicut_tthad"        , "met, mindphicut, tthad"        , bins_of_met, met_bin_edges_met ) ;
+      TH1F* h_metovsqrtht_mindphicut_tthad = new TH1F("h_metovsqrtht_mindphicut_tthad", "metovsqrtht, mindphicut, tthad", bins_of_met, met_bin_edges_metovsqrtht ) ;
+
+      h_metsig_mindphicut_tthad -> Sumw2() ;
+      h_metsig2012_mindphicut_tthad -> Sumw2() ;
+      h_met_mindphicut_tthad -> Sumw2() ;
+      h_metovsqrtht_mindphicut_tthad -> Sumw2() ;
+
+
 
 
       float xshift(0.03) ;
@@ -563,6 +630,173 @@
 
 
 
+    //--- tthad, all
+
+      sprintf( allcuts, "(%s)*weight3*%.0f", allcommoncuts, dataIntLumiIPB ) ;
+      sprintf( arg1, "METsig>>h_metsig_all_tthad" ) ;
+      bgcompchain[3] -> Draw( arg1, allcuts ) ;
+      cdraw -> Update() ; cdraw -> Draw() ;
+
+      sprintf( arg1, "METsig_2012>>h_metsig2012_all_tthad" ) ;
+      bgcompchain[3] -> Draw( arg1, allcuts ) ;
+      cdraw -> Update() ; cdraw -> Draw() ;
+
+      sprintf( arg1, "MET>>h_met_all_tthad" ) ;
+      bgcompchain[3] -> Draw( arg1, allcuts ) ;
+      cdraw -> Update() ; cdraw -> Draw() ;
+
+      sprintf( arg1, "MET/sqrt(HT30)>>h_metovsqrtht_all_tthad" ) ;
+      bgcompchain[3] -> Draw( arg1, allcuts ) ;
+      cdraw -> Update() ; cdraw -> Draw() ;
+
+      addoverflow ( h_metsig_all_tthad ) ;
+      addoverflow ( h_metsig2012_all_tthad ) ;
+      addoverflow ( h_met_all_tthad ) ;
+      addoverflow ( h_metovsqrtht_all_tthad ) ;
+
+      TH1F* h_metsig_all_tthad_cbw = make_h_cbw( h_metsig_all_tthad, 3*xshift ) ;
+      TH1F* h_metsig2012_all_tthad_cbw = make_h_cbw( h_metsig2012_all_tthad, 1*xshift ) ;
+      TH1F* h_met_all_tthad_cbw = make_h_cbw( h_met_all_tthad, 2*xshift ) ;
+      TH1F* h_metovsqrtht_all_tthad_cbw = make_h_cbw( h_metovsqrtht_all_tthad, 0*xshift ) ;
+
+
+
+    //--- tthad, 2b
+
+      sprintf( allcuts, "(%s&&(%s))*weight3*%.0f", allcommoncuts, btag2bcuts, dataIntLumiIPB ) ;
+      sprintf( arg1, "METsig>>h_metsig_2b_tthad" ) ;
+      bgcompchain[3] -> Draw( arg1, allcuts ) ;
+      cdraw -> Update() ; cdraw -> Draw() ;
+
+      sprintf( arg1, "METsig_2012>>h_metsig2012_2b_tthad" ) ;
+      bgcompchain[3] -> Draw( arg1, allcuts ) ;
+      cdraw -> Update() ; cdraw -> Draw() ;
+
+      sprintf( arg1, "MET>>h_met_2b_tthad" ) ;
+      bgcompchain[3] -> Draw( arg1, allcuts ) ;
+      cdraw -> Update() ; cdraw -> Draw() ;
+
+      sprintf( arg1, "MET/sqrt(HT30)>>h_metovsqrtht_2b_tthad" ) ;
+      bgcompchain[3] -> Draw( arg1, allcuts ) ;
+      cdraw -> Update() ; cdraw -> Draw() ;
+
+      addoverflow ( h_metsig_2b_tthad ) ;
+      addoverflow ( h_metsig2012_2b_tthad ) ;
+      addoverflow ( h_met_2b_tthad ) ;
+      addoverflow ( h_metovsqrtht_2b_tthad ) ;
+
+      TH1F* h_metsig_2b_tthad_cbw = make_h_cbw( h_metsig_2b_tthad, 3*xshift ) ;
+      TH1F* h_metsig2012_2b_tthad_cbw = make_h_cbw( h_metsig2012_2b_tthad, 1*xshift ) ;
+      TH1F* h_met_2b_tthad_cbw = make_h_cbw( h_met_2b_tthad, 2*xshift ) ;
+      TH1F* h_metovsqrtht_2b_tthad_cbw = make_h_cbw( h_metovsqrtht_2b_tthad, 0*xshift ) ;
+
+
+
+
+    //--- tthad, 3b
+
+      sprintf( allcuts, "(%s&&(%s))*weight3*%.0f", allcommoncuts, btag3bcuts, dataIntLumiIPB ) ;
+      sprintf( arg1, "METsig>>h_metsig_3b_tthad" ) ;
+      bgcompchain[3] -> Draw( arg1, allcuts ) ;
+      cdraw -> Update() ; cdraw -> Draw() ;
+
+      sprintf( arg1, "METsig_2012>>h_metsig2012_3b_tthad" ) ;
+      bgcompchain[3] -> Draw( arg1, allcuts ) ;
+      cdraw -> Update() ; cdraw -> Draw() ;
+
+      sprintf( arg1, "MET>>h_met_3b_tthad" ) ;
+      bgcompchain[3] -> Draw( arg1, allcuts ) ;
+      cdraw -> Update() ; cdraw -> Draw() ;
+
+      sprintf( arg1, "MET/sqrt(HT30)>>h_metovsqrtht_3b_tthad" ) ;
+      bgcompchain[3] -> Draw( arg1, allcuts ) ;
+      cdraw -> Update() ; cdraw -> Draw() ;
+
+      addoverflow ( h_metsig_3b_tthad ) ;
+      addoverflow ( h_metsig2012_3b_tthad ) ;
+      addoverflow ( h_met_3b_tthad ) ;
+      addoverflow ( h_metovsqrtht_3b_tthad ) ;
+
+      TH1F* h_metsig_3b_tthad_cbw = make_h_cbw( h_metsig_3b_tthad, 3*xshift ) ;
+      TH1F* h_metsig2012_3b_tthad_cbw = make_h_cbw( h_metsig2012_3b_tthad, 1*xshift ) ;
+      TH1F* h_met_3b_tthad_cbw = make_h_cbw( h_met_3b_tthad, 2*xshift ) ;
+      TH1F* h_metovsqrtht_3b_tthad_cbw = make_h_cbw( h_metovsqrtht_3b_tthad, 0*xshift ) ;
+
+
+
+
+    //--- tthad, 4b
+
+      sprintf( allcuts, "(%s&&(%s))*weight3*%.0f", allcommoncuts, btag4bcuts, dataIntLumiIPB ) ;
+      sprintf( arg1, "METsig>>h_metsig_4b_tthad" ) ;
+      bgcompchain[3] -> Draw( arg1, allcuts ) ;
+      cdraw -> Update() ; cdraw -> Draw() ;
+
+      sprintf( arg1, "METsig_2012>>h_metsig2012_4b_tthad" ) ;
+      bgcompchain[3] -> Draw( arg1, allcuts ) ;
+      cdraw -> Update() ; cdraw -> Draw() ;
+
+      sprintf( arg1, "MET>>h_met_4b_tthad" ) ;
+      bgcompchain[3] -> Draw( arg1, allcuts ) ;
+      cdraw -> Update() ; cdraw -> Draw() ;
+
+      sprintf( arg1, "MET/sqrt(HT30)>>h_metovsqrtht_4b_tthad" ) ;
+      bgcompchain[3] -> Draw( arg1, allcuts ) ;
+      cdraw -> Update() ; cdraw -> Draw() ;
+
+      addoverflow ( h_metsig_4b_tthad ) ;
+      addoverflow ( h_metsig2012_4b_tthad ) ;
+      addoverflow ( h_met_4b_tthad ) ;
+      addoverflow ( h_metovsqrtht_4b_tthad ) ;
+
+      TH1F* h_metsig_4b_tthad_cbw = make_h_cbw( h_metsig_4b_tthad, 3*xshift ) ;
+      TH1F* h_metsig2012_4b_tthad_cbw = make_h_cbw( h_metsig2012_4b_tthad, 1*xshift ) ;
+      TH1F* h_met_4b_tthad_cbw = make_h_cbw( h_met_4b_tthad, 2*xshift ) ;
+      TH1F* h_metovsqrtht_4b_tthad_cbw = make_h_cbw( h_metovsqrtht_4b_tthad, 0*xshift ) ;
+
+
+
+
+    //--- tthad, mindphicut
+
+      sprintf( allcuts, "(%s&&(%s))*weight3*%.0f", allcommoncuts, mindphicut, dataIntLumiIPB ) ;
+      sprintf( arg1, "METsig>>h_metsig_mindphicut_tthad" ) ;
+      bgcompchain[3] -> Draw( arg1, allcuts ) ;
+      cdraw -> Update() ; cdraw -> Draw() ;
+
+      sprintf( arg1, "METsig_2012>>h_metsig2012_mindphicut_tthad" ) ;
+      bgcompchain[3] -> Draw( arg1, allcuts ) ;
+      cdraw -> Update() ; cdraw -> Draw() ;
+
+      sprintf( arg1, "MET>>h_met_mindphicut_tthad" ) ;
+      bgcompchain[3] -> Draw( arg1, allcuts ) ;
+      cdraw -> Update() ; cdraw -> Draw() ;
+
+      sprintf( arg1, "MET/sqrt(HT30)>>h_metovsqrtht_mindphicut_tthad" ) ;
+      bgcompchain[3] -> Draw( arg1, allcuts ) ;
+      cdraw -> Update() ; cdraw -> Draw() ;
+
+      addoverflow ( h_metsig_mindphicut_tthad ) ;
+      addoverflow ( h_metsig2012_mindphicut_tthad ) ;
+      addoverflow ( h_met_mindphicut_tthad ) ;
+      addoverflow ( h_metovsqrtht_mindphicut_tthad ) ;
+
+      TH1F* h_metsig_mindphicut_tthad_cbw = make_h_cbw( h_metsig_mindphicut_tthad, 3*xshift ) ;
+      TH1F* h_metsig2012_mindphicut_tthad_cbw = make_h_cbw( h_metsig2012_mindphicut_tthad, 1*xshift ) ;
+      TH1F* h_met_mindphicut_tthad_cbw = make_h_cbw( h_met_mindphicut_tthad, 2*xshift ) ;
+      TH1F* h_metovsqrtht_mindphicut_tthad_cbw = make_h_cbw( h_metovsqrtht_mindphicut_tthad, 0*xshift ) ;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -617,6 +851,8 @@
 
       c_qcd_all -> Update() ;
 
+      c_qcd_all -> SaveAs( "outputfiles/metvars-qcd-all.pdf" ) ;
+
 
     //---- qcd, 2b
 
@@ -656,6 +892,7 @@
 
       c_qcd_2b -> Update() ;
 
+      c_qcd_2b -> SaveAs( "outputfiles/metvars-qcd-2b.pdf" ) ;
 
     //---- qcd, 3b
 
@@ -695,6 +932,7 @@
 
       c_qcd_3b -> Update() ;
 
+      c_qcd_3b -> SaveAs( "outputfiles/metvars-qcd-3b.pdf" ) ;
 
 
 
@@ -737,7 +975,7 @@
 
       c_qcd_4b -> Update() ;
 
-
+      c_qcd_4b -> SaveAs( "outputfiles/metvars-qcd-4b.pdf" ) ;
 
 
     //---- qcd, mindphicut
@@ -778,6 +1016,7 @@
 
       c_qcd_mindphicut -> Update() ;
 
+      c_qcd_mindphicut -> SaveAs( "outputfiles/metvars-qcd-mindphicut.pdf" ) ;
 
 
 
@@ -821,6 +1060,7 @@
 
       c_tt_all -> Update() ;
 
+      c_tt_all -> SaveAs( "outputfiles/metvars-tt-all.pdf" ) ;
 
 
     //----
@@ -860,6 +1100,215 @@
       legend -> Draw() ;
 
       c_signal_all -> Update() ;
+
+      c_signal_all -> SaveAs( "outputfiles/metvars-signal-all.pdf" ) ;
+
+
+    //---- tthad, all
+
+      TCanvas* c_tthad_all = new TCanvas("c_tthad_all", "tthad, all", 600, 400 ) ;
+
+      h_metsig_all_tthad_cbw -> SetLineColor(4) ;
+      h_metsig2012_all_tthad_cbw -> SetLineColor(1) ;
+      h_met_all_tthad_cbw -> SetLineColor(2) ;
+      h_metovsqrtht_all_tthad_cbw -> SetLineColor(3) ;
+
+      h_metsig_all_tthad_cbw -> SetLineWidth(2) ;
+      h_metsig2012_all_tthad_cbw -> SetLineWidth(2) ;
+      h_met_all_tthad_cbw -> SetLineWidth(2) ;
+      h_metovsqrtht_all_tthad_cbw -> SetLineWidth(2) ;
+
+
+  //  h_metsig_all_tthad_cbw -> Scale( 1./(h_metsig_all_tthad->Integral()) ) ;
+  //  h_metsig2012_all_tthad_cbw -> Scale( 1./(h_metsig2012_all_tthad->Integral()) ) ;
+  //  h_met_all_tthad_cbw -> Scale( 1./(h_met_all_tthad->Integral()) ) ;
+  //  h_metovsqrtht_all_tthad_cbw -> Scale( 1./(h_metovsqrtht_all_tthad->Integral()) ) ;
+
+
+  //  h_metsig_all_tthad_cbw -> SetMaximum(0.50) ;
+      h_metsig_all_tthad_cbw -> Draw( "hist" ) ;
+      h_metsig_all_tthad_cbw -> Draw( "same" ) ;
+
+      h_metsig2012_all_tthad_cbw -> Draw( "hist same" ) ;
+      h_metsig2012_all_tthad_cbw -> Draw( "same" ) ;
+
+      h_met_all_tthad_cbw -> Draw( "hist same" ) ;
+      h_met_all_tthad_cbw -> Draw( "same" ) ;
+
+      h_metovsqrtht_all_tthad_cbw -> Draw( "hist same" ) ;
+      h_metovsqrtht_all_tthad_cbw -> Draw( "same" ) ;
+
+      legend -> Draw() ;
+
+      c_tthad_all -> Update() ;
+
+      c_tthad_all -> SaveAs( "outputfiles/metvars-tthad-all.pdf" ) ;
+
+
+    //---- tthad, 2b
+
+      TCanvas* c_tthad_2b = new TCanvas("c_tthad_2b", "tthad, 2b", 600, 400 ) ;
+
+      h_metsig_2b_tthad_cbw -> SetLineColor(4) ;
+      h_metsig2012_2b_tthad_cbw -> SetLineColor(1) ;
+      h_met_2b_tthad_cbw -> SetLineColor(2) ;
+      h_metovsqrtht_2b_tthad_cbw -> SetLineColor(3) ;
+
+      h_metsig_2b_tthad_cbw -> SetLineWidth(2) ;
+      h_metsig2012_2b_tthad_cbw -> SetLineWidth(2) ;
+      h_met_2b_tthad_cbw -> SetLineWidth(2) ;
+      h_metovsqrtht_2b_tthad_cbw -> SetLineWidth(2) ;
+
+
+  //  h_metsig_2b_tthad_cbw -> Scale( 1./(h_metsig_2b_tthad->Integral()) ) ;
+  //  h_metsig2012_2b_tthad_cbw -> Scale( 1./(h_metsig2012_2b_tthad->Integral()) ) ;
+  //  h_met_2b_tthad_cbw -> Scale( 1./(h_met_2b_tthad->Integral()) ) ;
+  //  h_metovsqrtht_2b_tthad_cbw -> Scale( 1./(h_metovsqrtht_2b_tthad->Integral()) ) ;
+
+
+  //  h_metsig_2b_tthad_cbw -> SetMaximum(0.50) ;
+      h_metsig_2b_tthad_cbw -> Draw( "hist" ) ;
+      h_metsig_2b_tthad_cbw -> Draw( "same" ) ;
+
+      h_metsig2012_2b_tthad_cbw -> Draw( "hist same" ) ;
+      h_metsig2012_2b_tthad_cbw -> Draw( "same" ) ;
+
+      h_met_2b_tthad_cbw -> Draw( "hist same" ) ;
+      h_met_2b_tthad_cbw -> Draw( "same" ) ;
+
+      h_metovsqrtht_2b_tthad_cbw -> Draw( "hist same" ) ;
+      h_metovsqrtht_2b_tthad_cbw -> Draw( "same" ) ;
+
+      legend -> Draw() ;
+
+      c_tthad_2b -> Update() ;
+
+      c_tthad_2b -> SaveAs( "outputfiles/metvars-tthad-2b.pdf" ) ;
+
+    //---- tthad, 3b
+
+      TCanvas* c_tthad_3b = new TCanvas("c_tthad_3b", "tthad, 3b", 600, 400 ) ;
+
+      h_metsig_3b_tthad_cbw -> SetLineColor(4) ;
+      h_metsig2012_3b_tthad_cbw -> SetLineColor(1) ;
+      h_met_3b_tthad_cbw -> SetLineColor(2) ;
+      h_metovsqrtht_3b_tthad_cbw -> SetLineColor(3) ;
+
+      h_metsig_3b_tthad_cbw -> SetLineWidth(2) ;
+      h_metsig2012_3b_tthad_cbw -> SetLineWidth(2) ;
+      h_met_3b_tthad_cbw -> SetLineWidth(2) ;
+      h_metovsqrtht_3b_tthad_cbw -> SetLineWidth(2) ;
+
+
+  //  h_metsig_3b_tthad_cbw -> Scale( 1./(h_metsig_3b_tthad->Integral()) ) ;
+  //  h_metsig2012_3b_tthad_cbw -> Scale( 1./(h_metsig2012_3b_tthad->Integral()) ) ;
+  //  h_met_3b_tthad_cbw -> Scale( 1./(h_met_3b_tthad->Integral()) ) ;
+  //  h_metovsqrtht_3b_tthad_cbw -> Scale( 1./(h_metovsqrtht_3b_tthad->Integral()) ) ;
+
+
+  //  h_metsig_3b_tthad_cbw -> SetMaximum(0.50) ;
+      h_metsig_3b_tthad_cbw -> Draw( "hist" ) ;
+      h_metsig_3b_tthad_cbw -> Draw( "same" ) ;
+
+      h_metsig2012_3b_tthad_cbw -> Draw( "hist same" ) ;
+      h_metsig2012_3b_tthad_cbw -> Draw( "same" ) ;
+
+      h_met_3b_tthad_cbw -> Draw( "hist same" ) ;
+      h_met_3b_tthad_cbw -> Draw( "same" ) ;
+
+      h_metovsqrtht_3b_tthad_cbw -> Draw( "hist same" ) ;
+      h_metovsqrtht_3b_tthad_cbw -> Draw( "same" ) ;
+
+      legend -> Draw() ;
+
+      c_tthad_3b -> Update() ;
+
+      c_tthad_3b -> SaveAs( "outputfiles/metvars-tthad-3b.pdf" ) ;
+
+
+
+
+    //---- tthad, 4b
+
+      TCanvas* c_tthad_4b = new TCanvas("c_tthad_4b", "tthad, 4b", 600, 400 ) ;
+
+      h_metsig_4b_tthad_cbw -> SetLineColor(4) ;
+      h_metsig2012_4b_tthad_cbw -> SetLineColor(1) ;
+      h_met_4b_tthad_cbw -> SetLineColor(2) ;
+      h_metovsqrtht_4b_tthad_cbw -> SetLineColor(3) ;
+
+      h_metsig_4b_tthad_cbw -> SetLineWidth(2) ;
+      h_metsig2012_4b_tthad_cbw -> SetLineWidth(2) ;
+      h_met_4b_tthad_cbw -> SetLineWidth(2) ;
+      h_metovsqrtht_4b_tthad_cbw -> SetLineWidth(2) ;
+
+
+  //  h_metsig_4b_tthad_cbw -> Scale( 1./(h_metsig_4b_tthad->Integral()) ) ;
+  //  h_metsig2012_4b_tthad_cbw -> Scale( 1./(h_metsig2012_4b_tthad->Integral()) ) ;
+  //  h_met_4b_tthad_cbw -> Scale( 1./(h_met_4b_tthad->Integral()) ) ;
+  //  h_metovsqrtht_4b_tthad_cbw -> Scale( 1./(h_metovsqrtht_4b_tthad->Integral()) ) ;
+
+
+  //  h_metsig_4b_tthad_cbw -> SetMaximum(0.50) ;
+      h_metsig_4b_tthad_cbw -> Draw( "hist" ) ;
+      h_metsig_4b_tthad_cbw -> Draw( "same" ) ;
+
+      h_metsig2012_4b_tthad_cbw -> Draw( "hist same" ) ;
+      h_metsig2012_4b_tthad_cbw -> Draw( "same" ) ;
+
+      h_met_4b_tthad_cbw -> Draw( "hist same" ) ;
+      h_met_4b_tthad_cbw -> Draw( "same" ) ;
+
+      h_metovsqrtht_4b_tthad_cbw -> Draw( "hist same" ) ;
+      h_metovsqrtht_4b_tthad_cbw -> Draw( "same" ) ;
+
+      legend -> Draw() ;
+
+      c_tthad_4b -> Update() ;
+
+      c_tthad_4b -> SaveAs( "outputfiles/metvars-tthad-4b.pdf" ) ;
+
+
+    //---- tthad, mindphicut
+
+      TCanvas* c_tthad_mindphicut = new TCanvas("c_tthad_mindphicut", "tthad, mindphicut", 600, 400 ) ;
+
+      h_metsig_mindphicut_tthad_cbw -> SetLineColor(4) ;
+      h_metsig2012_mindphicut_tthad_cbw -> SetLineColor(1) ;
+      h_met_mindphicut_tthad_cbw -> SetLineColor(2) ;
+      h_metovsqrtht_mindphicut_tthad_cbw -> SetLineColor(3) ;
+
+      h_metsig_mindphicut_tthad_cbw -> SetLineWidth(2) ;
+      h_metsig2012_mindphicut_tthad_cbw -> SetLineWidth(2) ;
+      h_met_mindphicut_tthad_cbw -> SetLineWidth(2) ;
+      h_metovsqrtht_mindphicut_tthad_cbw -> SetLineWidth(2) ;
+
+
+  //  h_metsig_mindphicut_tthad_cbw -> Scale( 1./(h_metsig_mindphicut_tthad->Integral()) ) ;
+  //  h_metsig2012_mindphicut_tthad_cbw -> Scale( 1./(h_metsig2012_mindphicut_tthad->Integral()) ) ;
+  //  h_met_mindphicut_tthad_cbw -> Scale( 1./(h_met_mindphicut_tthad->Integral()) ) ;
+  //  h_metovsqrtht_mindphicut_tthad_cbw -> Scale( 1./(h_metovsqrtht_mindphicut_tthad->Integral()) ) ;
+
+
+  //  h_metsig_mindphicut_tthad_cbw -> SetMaximum(0.50) ;
+      h_metsig_mindphicut_tthad_cbw -> Draw( "hist" ) ;
+      h_metsig_mindphicut_tthad_cbw -> Draw( "same" ) ;
+
+      h_metsig2012_mindphicut_tthad_cbw -> Draw( "hist same" ) ;
+      h_metsig2012_mindphicut_tthad_cbw -> Draw( "same" ) ;
+
+      h_met_mindphicut_tthad_cbw -> Draw( "hist same" ) ;
+      h_met_mindphicut_tthad_cbw -> Draw( "same" ) ;
+
+      h_metovsqrtht_mindphicut_tthad_cbw -> Draw( "hist same" ) ;
+      h_metovsqrtht_mindphicut_tthad_cbw -> Draw( "same" ) ;
+
+      legend -> Draw() ;
+
+      c_tthad_mindphicut -> Update() ;
+
+      c_tthad_mindphicut -> SaveAs( "outputfiles/metvars-tthad-mindphicut.pdf" ) ;
+
 
 
 
@@ -908,6 +1357,8 @@
 
       retval -> SetLineColor( hin -> GetLineColor() ) ;
       retval -> SetLineWidth( hin -> GetLineWidth() ) ;
+
+      if ( gStyle -> GetOptLogy() ) { retval -> SetMinimum(0.1) ; }
 
       return retval ;
 
