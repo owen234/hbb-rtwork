@@ -46,6 +46,9 @@
          inReducedTree -> SetBranchStatus("passMC_DiCentralPFJet30_PFMET80_BTagCSV07",1) ;
          inReducedTree -> SetBranchStatus("passMC_DiPFJet80_DiPFJet30_BTagCSVd07d05",1) ;
          inReducedTree -> SetBranchStatus("passMC_PFMET150",1) ;
+         inReducedTree -> SetBranchStatus("pass_DiCentralPFJet30_PFMET80_BTagCSV07",1) ;
+         inReducedTree -> SetBranchStatus("pass_DiPFJet80_DiPFJet30_BTagCSVd07d05",1) ;
+         inReducedTree -> SetBranchStatus("pass_PFMET150",1) ;
 
         //--- lepton veto vars
          inReducedTree -> SetBranchStatus("nMuons",1) ;
@@ -72,6 +75,7 @@
          inReducedTree -> SetBranchStatus("deltaRmax_hh",1) ;
          inReducedTree -> SetBranchStatus("deltaRmin_hh",1) ;
          inReducedTree -> SetBranchStatus("minDeltaPhi30",1) ;
+         inReducedTree -> SetBranchStatus("minDeltaPhi20",1) ;
 
         //--- Kinematic vars
          inReducedTree -> SetBranchStatus("MET",1) ;

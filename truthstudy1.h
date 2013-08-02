@@ -66,6 +66,7 @@ public :
    Float_t         METsig_2012;
    Float_t         maxDeltaPhi_bb_bb;
    Float_t         minDeltaPhi30;
+   Float_t         minDeltaPhi20;
    Float_t         CSVbest1;
    Float_t         CSVbest2;
    Float_t         CSVbest3;
@@ -123,6 +124,7 @@ public :
    TBranch        *b_METsig_2012;   //!
    TBranch        *b_maxDeltaPhi_bb_bb;   //!
    TBranch        *b_minDeltaPhi30;   //!
+   TBranch        *b_minDeltaPhi20;   //!
    TBranch        *b_CSVbest1;   //!
    TBranch        *b_CSVbest2;   //!
    TBranch        *b_CSVbest3;   //!
@@ -287,6 +289,7 @@ void truthstudy1::Init(TTree *tree)
    fChain->SetBranchAddress("METsig_2012", &METsig_2012, &b_METsig_2012);
    fChain->SetBranchAddress("maxDeltaPhi_bb_bb", &maxDeltaPhi_bb_bb, &b_maxDeltaPhi_bb_bb);
    fChain->SetBranchAddress("minDeltaPhi30", &minDeltaPhi30, &b_minDeltaPhi30);
+   fChain->SetBranchAddress("minDeltaPhi20", &minDeltaPhi20, &b_minDeltaPhi20);
    fChain->SetBranchAddress("CSVbest1", &CSVbest1, &b_CSVbest1);
    fChain->SetBranchAddress("CSVbest2", &CSVbest2, &b_CSVbest2);
    fChain->SetBranchAddress("CSVbest3", &CSVbest3, &b_CSVbest3);

@@ -617,8 +617,8 @@ void truthstudy1::Loop()
 
 
    int n_metsig_bins(7) ;
-   ///double metsig_bins[8] = { 0., 10., 20., 30., 50., 100., 150., 200. } ;  // scale for METsig
-   double metsig_bins[8] = { 0., 9., 17., 25., 40., 85., 120., 170. } ;
+   double metsig_bins[8] = { 0., 10., 20., 30., 50., 100., 150., 200. } ;  // scale for METsig
+   ///double metsig_bins[8] = { 0., 9., 17., 25., 40., 85., 120., 170. } ; // scale for METsig_2012
 
    TH1F* h_metsig_msig_2b = new TH1F("h_metsig_msig_2b", "METsig, mass sig box, 2b", n_metsig_bins, metsig_bins ) ;
    TH1F* h_metsig_msig_3b = new TH1F("h_metsig_msig_3b", "METsig, mass sig box, 3b", n_metsig_bins, metsig_bins ) ;
@@ -1166,12 +1166,14 @@ void truthstudy1::Loop()
          printf("   b1hind=%d, b2hind=%d, jahind=%d, jbhind=%d ;  evtcode=%d\n\n", b1hind, b2hind, jahind, jbhind, evtcode ) ;
       }
 
+      //--- trigger
+      if ( ! (passMC_DiCentralPFJet30_PFMET80_BTagCSV07 || passMC_PFMET150) ) continue ;
 
       //--- njets requirement.
       if ( njets20<4 || njets20>5 ) continue ;
 
       //--- lepton veto
-      if ( ! (nMuons==0&&nElectrons==0&&nIsoTracks15_005_03==0&&nIsoTracks5_005_03<2&&nTausLoose==0 ) ) continue ;
+      if ( ! (nMuons==0&&nElectrons==0&&nIsoTracks15_005_03==0&&nTausLoose==0 ) ) continue ;
 
       //--- two tight b tags
       if ( ! (CSVbest2>0.898) ) continue ;
@@ -1182,8 +1184,8 @@ void truthstudy1::Loop()
       //--- max Dr cut
       if ( ! (deltaRmax_hh<2.2) ) continue ;
 
-      //--- minDeltaPhi30 cut
-      if ( minDeltaPhi30 < 0.3 ) continue ;
+      //--- minDeltaPhi20 cut
+      if ( minDeltaPhi20 < 0.3 ) continue ;
 
 
 
@@ -1196,8 +1198,7 @@ void truthstudy1::Loop()
       if ( pass2b ) { h_maxdr_pc__2b_ptrw -> Fill( deltaRmax_hh, ptw2b ) ; }
 
 
-      float metsig_var = METsig_2012 ;
-      ///float metsig_var = METsig ;
+      float metsig_var = METsig ;
 
       h_hspt_lower  -> Fill( hspt_lower ) ;
       h_hspt_higher -> Fill( hspt_higher ) ;
@@ -2220,7 +2221,7 @@ void truthstudy1::Loop()
 
  //=====================
 
-   float maxRatio(0.50) ;
+   float maxRatio(0.40) ;
 
    gStyle -> SetOptStat(0) ;
    gStyle -> SetPadGridY(1) ;
@@ -2504,9 +2505,9 @@ void truthstudy1::Loop()
       hb -> SetLineColor(2) ;
       hc -> SetLineColor(1) ;
 
-      ha -> SetXTitle("Njets, pt>30") ;
-      hb -> SetXTitle("Njets, pt>30") ;
-      hc -> SetXTitle("Njets, pt>30") ;
+      ha -> SetXTitle("Njets, pt>20") ;
+      hb -> SetXTitle("Njets, pt>20") ;
+      hc -> SetXTitle("Njets, pt>20") ;
 
       c_njet_eff -> cd(1) ;
       ha -> Draw() ;
@@ -2554,8 +2555,8 @@ void truthstudy1::Loop()
       ha -> SetLineColor(4) ;
       hb -> SetLineColor(2) ;
 
-      ha -> SetXTitle("Njets, pt>30") ;
-      hb -> SetXTitle("Njets, pt>30") ;
+      ha -> SetXTitle("Njets, pt>20") ;
+      hb -> SetXTitle("Njets, pt>20") ;
 
       c_njet_eff -> cd(1) ;
       ha -> Draw() ;
@@ -3731,7 +3732,7 @@ void truthstudy1::draw_code_ratio_canvas( const char* cname, const char* ctitle,
    if ( hcbs-> Integral() > 0 ) hcbs-> Scale( 1./(hcbs->Integral()) ) ;
 
    hra -> SetMinimum(0.00) ;
-   hra -> SetMaximum(0.50) ;
+   hra -> SetMaximum(0.40) ;
 
    float hcmax = hca -> GetMaximum() ;
    if ( hcbs -> GetMaximum() > hcmax ) hcmax = hcbs -> GetMaximum() ;
