@@ -19,7 +19,7 @@
 //          .L doSkimSlim.C+
 //
 
-  void doSkimSlim( const char* infile_name, bool doSlim = false  ) {
+  void doSkimSlim( const char* infile_name, bool doSlim = false, const char* outdir = ""  ) {
 
       TFile* infile = new TFile( infile_name ) ;
       if ( ! (infile->IsOpen()) ) return ;
@@ -155,21 +155,33 @@
 
 
      //--- Open output file
-      TString outfile_name( infile_name ) ;
-      if ( doSlim ) {
-         if ( outfile_name.Contains("-skim.root") ) {
-            outfile_name.ReplaceAll( "-skim.root", "-slimskim.root" ) ;
+      TString outfile_name ;
+      if ( strlen(outdir) > 0 ) {
+         char command[10000] ;
+         sprintf( command, "basename %s .root", infile_name ) ;
+         TString filename_only = gSystem -> GetFromPipe( command ) ;
+         if ( doSlim ) {
+            outfile_name = TString( outdir ) + TString("/") + filename_only + TString("-slimskim.root") ;
          } else {
-            outfile_name.ReplaceAll( ".root", "-slimskim.root" ) ;
+            outfile_name = TString( outdir ) + TString("/") + filename_only + TString("-skim.root") ;
          }
       } else {
-         outfile_name.ReplaceAll( ".root", "-skim.root" ) ;
-      }
-      if ( outfile_name.CompareTo( infile_name ) == 0 ) {
-         printf("\n\n *** Input and output file names same.  Input doesn't contain .root in name?\n") ;
-         printf("    input: %s \n", infile_name ) ;
-         printf("    output: %s \n", outfile_name.Data() ) ;
-         return ;
+         outfile_name = TString( infile_name ) ;
+         if ( doSlim ) {
+            if ( outfile_name.Contains("-skim.root") ) {
+               outfile_name.ReplaceAll( "-skim.root", "-slimskim.root" ) ;
+            } else {
+               outfile_name.ReplaceAll( ".root", "-slimskim.root" ) ;
+            }
+         } else {
+            outfile_name.ReplaceAll( ".root", "-skim.root" ) ;
+         }
+         if ( outfile_name.CompareTo( infile_name ) == 0 ) {
+            printf("\n\n *** Input and output file names same.  Input doesn't contain .root in name?\n") ;
+            printf("    input: %s \n", infile_name ) ;
+            printf("    output: %s \n", outfile_name.Data() ) ;
+            return ;
+         }
       }
       printf("\n\n Output file: %s\n\n", outfile_name.Data() ) ;
       char command[10000] ;
@@ -184,7 +196,6 @@
       }
       TFile* outfile = new TFile( outfile_name, "recreate" ) ;
       TTree* outReducedTree = inReducedTree->CloneTree(0) ;
-
 
 
 
@@ -230,7 +241,7 @@
          //       this means you must cut on the appropriate njets variable when using the skim output.
          if ( njets20<4 || njets30>5 ) continue ;
          //-----------
-         if ( CSVbest2 < 0.898 ) continue ;
+         /// if ( CSVbest2 < 0.898 ) continue ;
 
          outReducedTree->Fill() ;
 
