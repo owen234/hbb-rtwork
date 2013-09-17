@@ -91,6 +91,7 @@
          inReducedTree -> SetBranchStatus("PUweight",1) ;
          inReducedTree -> SetBranchStatus("nGoodPV",1) ;
          inReducedTree -> SetBranchStatus("m0",1) ;
+         inReducedTree -> SetBranchStatus("m12",1) ;
 
         //--- jet pt
          inReducedTree -> SetBranchStatus("jetpt1",1) ;
@@ -241,7 +242,7 @@
          //       this means you must cut on the appropriate njets variable when using the skim output.
          if ( njets20<4 || njets30>5 ) continue ;
          //-----------
-         /// if ( CSVbest2 < 0.898 ) continue ;
+         if ( CSVbest2 < 0.898 ) continue ;
 
          outReducedTree->Fill() ;
 
