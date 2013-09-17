@@ -51,6 +51,8 @@
    void drawSet( const char* hname_base, const char* xtitle ) ;
    void loadHist(const char* filename="in.root", const char* pfx=0, const char* pat="*", Bool_t doAdd=kFALSE, Double_t scaleFactor=-1.0) ;
    void saveHist(const char* filename, const char* pat) ;
+   void drawMETsigBinBoundaries( float ymax ) ;
+   void drawMETBinBoundaries( float ymax ) ;
 
   //----------
 
@@ -81,57 +83,62 @@
        int hind(0) ;
 
        sprintf( histnamelist[hind], "h_metsig_2b_with_mindphi" ) ; sprintf( histxtitlelist[hind], "METsig" ) ; hind++ ;
+       sprintf( histnamelist[hind], "h_metsig_2b_with_mindphi_wide1" ) ; sprintf( histxtitlelist[hind], "METsig" ) ; hind++ ;
+       sprintf( histnamelist[hind], "h_metsig_2b_with_mindphi_wide2" ) ; sprintf( histxtitlelist[hind], "METsig" ) ; hind++ ;
        sprintf( histnamelist[hind], "h_met_2b_with_mindphi" ) ; sprintf( histxtitlelist[hind], "MET (GeV)" ) ; hind++ ;
        sprintf( histnamelist[hind], "h_metsig_2b_no_mindphi" ) ; sprintf( histxtitlelist[hind], "METsig" ) ; hind++ ;
+       sprintf( histnamelist[hind], "h_metsig_2b_no_mindphi_wide1" ) ; sprintf( histxtitlelist[hind], "METsig" ) ; hind++ ;
+       sprintf( histnamelist[hind], "h_metsig_2b_no_mindphi_wide2" ) ; sprintf( histxtitlelist[hind], "METsig" ) ; hind++ ;
        sprintf( histnamelist[hind], "h_met_2b_no_mindphi" ) ; sprintf( histxtitlelist[hind], "MET (GeV)" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_2b_no_metsig" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
 
-       sprintf( histnamelist[hind], "h_mindphi_2b_metsig_030" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_2b_metsig_050" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_2b_metsig_100" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_2b_metsig_150" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_2b_no_metsig" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
 
-       sprintf( histnamelist[hind], "h_mindphi_2b_no_met" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_2b_met_100" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_2b_met_135" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_2b_met_190" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_2b_met_250" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_2b_metsig_030" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_2b_metsig_050" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_2b_metsig_100" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_2b_metsig_150" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
 
-       sprintf( histnamelist[hind], "h_mindphi_2b_metsig_bin0" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_2b_metsig_bin1" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_2b_metsig_bin2" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_2b_metsig_bin3" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_2b_metsig_bin4" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_2b_no_met" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_2b_met_100" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_2b_met_135" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_2b_met_190" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_2b_met_250" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
 
-       sprintf( histnamelist[hind], "h_mindphi_2b_met_bin0" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_2b_met_bin1" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_2b_met_bin2" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_2b_met_bin3" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_2b_met_bin4" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_2b_metsig_bin0" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_2b_metsig_bin1" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_2b_metsig_bin2" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_2b_metsig_bin3" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_2b_metsig_bin4" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
 
-       sprintf( histnamelist[hind], "h_mindphi_3bSB_no_metsig" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_3bSB_metsig_030" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_3bSB_metsig_050" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_3bSB_metsig_100" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_3bSB_metsig_150" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_2b_met_bin0" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_2b_met_bin1" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_2b_met_bin2" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_2b_met_bin3" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_2b_met_bin4" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
 
-       sprintf( histnamelist[hind], "h_mindphi_3bSIG_no_metsig" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_3bSIG_metsig_030" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_3bSIG_metsig_050" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_3bSIG_metsig_100" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_3bSIG_metsig_150" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_3bSB_no_metsig" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_3bSB_metsig_030" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_3bSB_metsig_050" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_3bSB_metsig_100" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_3bSB_metsig_150" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
 
-       sprintf( histnamelist[hind], "h_mindphi_4bSB_no_metsig" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_4bSB_metsig_030" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_4bSB_metsig_050" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_4bSB_metsig_100" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_4bSB_metsig_150" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_3bSIG_no_metsig" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_3bSIG_metsig_030" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_3bSIG_metsig_050" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_3bSIG_metsig_100" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_3bSIG_metsig_150" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
 
-       sprintf( histnamelist[hind], "h_mindphi_4bSIG_no_metsig" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_4bSIG_metsig_030" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_4bSIG_metsig_050" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_4bSIG_metsig_100" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
-       sprintf( histnamelist[hind], "h_mindphi_4bSIG_metsig_150" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_4bSB_no_metsig" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_4bSB_metsig_030" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_4bSB_metsig_050" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_4bSB_metsig_100" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_4bSB_metsig_150" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+
+ //    sprintf( histnamelist[hind], "h_mindphi_4bSIG_no_metsig" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_4bSIG_metsig_030" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_4bSIG_metsig_050" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_4bSIG_metsig_100" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
+ //    sprintf( histnamelist[hind], "h_mindphi_4bSIG_metsig_150" ) ; sprintf( histxtitlelist[hind], "minDeltaPhi20" ) ; hind++ ;
 
 
        int nhistlist( hind ) ;
@@ -341,12 +348,25 @@
       }
       hmcsum->Draw("esame") ;
       hdata->DrawCopy("same") ;
+      hdata->DrawCopy("axis same") ;
       legend->Draw() ;
       toppad->Update() ;
       toppad->Draw() ;
       TText* title = new TText() ;
       title->SetTextSize(0.040) ;
       title->DrawTextNDC( 0.05, 0.95, hdata->GetTitle() ) ;
+
+      if ( hnstr.Contains("_metsig_") ) {
+         drawMETsigBinBoundaries( hmax ) ;
+      }
+      if ( hnstr.Contains("_met_") ) {
+         drawMETBinBoundaries( hmax ) ;
+      }
+      if ( hnstr.Contains("_mindphi_") ) {
+         TLine* line = new TLine() ;
+         line -> SetLineStyle(2) ;
+         line -> DrawLine( 0.30, 0., 0.30, hmax ) ;
+      }
 
 
       dmccan->Update() ;
@@ -393,7 +413,36 @@
 
    //=======================================================================================
 
+   void drawMETsigBinBoundaries( float ymax ) {
 
+      printf("\n Drawing METsig bin boundaries.\n\n") ;
+
+      TLine* line = new TLine() ;
+      line -> SetLineStyle(2) ;
+
+      line -> DrawLine(  30., 0.,  30., ymax ) ;
+      line -> DrawLine(  50., 0.,  50., ymax ) ;
+      line -> DrawLine( 100., 0., 100., ymax ) ;
+      line -> DrawLine( 150., 0., 150., ymax ) ;
+
+   }
+
+
+   //=======================================================================================
+
+   void drawMETBinBoundaries( float ymax ) {
+
+      printf("\n Drawing MET bin boundaries.\n\n") ;
+
+      TLine* line = new TLine() ;
+      line -> SetLineStyle(2) ;
+
+      line -> DrawLine( 106., 0., 106., ymax ) ;
+      line -> DrawLine( 133., 0., 133., ymax ) ;
+      line -> DrawLine( 190., 0., 190., ymax ) ;
+      line -> DrawLine( 250., 0., 250., ymax ) ;
+
+   }
 
 
    //=======================================================================================

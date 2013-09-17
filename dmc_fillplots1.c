@@ -40,7 +40,7 @@
        int compind ;
 
        char rtdir[10000] ;
-       sprintf( rtdir, "/Users/owen/work/cms/hadronic-susy-bjets/hbb/reduced-trees-july11-2013-pt20/" ) ;
+       sprintf( rtdir, "/Users/owen/work/cms/hadronic-susy-bjets/hbb/reduced-trees-sept17-2013-v71-1s/" ) ;
        char files_string[10000] ;
        int n_files_added ;
 
@@ -190,6 +190,16 @@
        sprintf( cuts, "(%s&&%s)", nm1_metsig, btag2cuts  ) ;
        fillSet( "h_metsig_2b_with_mindphi", "METsig", cuts ) ;
 
+       sprintf( htitle, "METsig, 2b, with minDeltaPhi cut" ) ;
+       bookSet( "h_metsig_2b_with_mindphi_wide1", htitle, 80, 0., 400. ) ;
+       sprintf( cuts, "(%s&&%s)", nm1_metsig, btag2cuts  ) ;
+       fillSet( "h_metsig_2b_with_mindphi_wide1", "METsig", cuts ) ;
+
+       sprintf( htitle, "METsig, 2b, with minDeltaPhi cut" ) ;
+       bookSet( "h_metsig_2b_with_mindphi_wide2", htitle, 20, 0., 400. ) ;
+       sprintf( cuts, "(%s&&%s)", nm1_metsig, btag2cuts  ) ;
+       fillSet( "h_metsig_2b_with_mindphi_wide2", "METsig", cuts ) ;
+
        sprintf( htitle, "MET, 2b, with minDeltaPhi cut" ) ;
        bookSet( "h_met_2b_with_mindphi", htitle, 35, 0., 350. ) ;
        sprintf( cuts, "(%s&&%s)", nm1_metsig, btag2cuts ) ;
@@ -202,6 +212,16 @@
        sprintf( cuts, "(%s&&%s)", nm2_metsig_mindphi, btag2cuts ) ;
        fillSet( "h_metsig_2b_no_mindphi", "METsig", cuts ) ;
 
+       sprintf( htitle, "METsig, 2b, no minDeltaPhi cut" ) ;
+       bookSet( "h_metsig_2b_no_mindphi_wide1", htitle, 80, 0., 400. ) ;
+       sprintf( cuts, "(%s&&%s)", nm2_metsig_mindphi, btag2cuts ) ;
+       fillSet( "h_metsig_2b_no_mindphi_wide1", "METsig", cuts ) ;
+
+       sprintf( htitle, "METsig, 2b, no minDeltaPhi cut" ) ;
+       bookSet( "h_metsig_2b_no_mindphi_wide2", htitle, 20, 0., 400. ) ;
+       sprintf( cuts, "(%s&&%s)", nm2_metsig_mindphi, btag2cuts ) ;
+       fillSet( "h_metsig_2b_no_mindphi_wide2", "METsig", cuts ) ;
+
        sprintf( htitle, "MET, 2b, no minDeltaPhi cut" ) ;
        bookSet( "h_met_2b_no_mindphi", htitle, 35, 0., 350. ) ;
        sprintf( cuts, "(%s&&%s)", nm2_metsig_mindphi, btag2cuts ) ;
@@ -210,226 +230,226 @@
 
 
 
-       sprintf( htitle, "minDeltaPhi20, 2b, no METsig cut" ) ;
-       bookSet( "h_mindphi_2b_no_metsig", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s)", nm2_metsig_mindphi, btag2cuts ) ;
-       fillSet( "h_mindphi_2b_no_metsig", "minDeltaPhi20", cuts ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 2b, no METsig cut" ) ;
+ //    bookSet( "h_mindphi_2b_no_metsig", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s)", nm2_metsig_mindphi, btag2cuts ) ;
+ //    fillSet( "h_mindphi_2b_no_metsig", "minDeltaPhi20", cuts ) ;
 
-       sprintf( htitle, "minDeltaPhi20, 2b, METsig>30" ) ;
-       bookSet( "h_mindphi_2b_metsig_030", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&METsig>30)", nm2_metsig_mindphi, btag2cuts ) ;
-       fillSet( "h_mindphi_2b_metsig_030", "minDeltaPhi20", cuts ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 2b, METsig>30" ) ;
+ //    bookSet( "h_mindphi_2b_metsig_030", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&METsig>30)", nm2_metsig_mindphi, btag2cuts ) ;
+ //    fillSet( "h_mindphi_2b_metsig_030", "minDeltaPhi20", cuts ) ;
 
-       sprintf( htitle, "minDeltaPhi20, 2b, METsig>50" ) ;
-       bookSet( "h_mindphi_2b_metsig_050", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&METsig>50)", nm2_metsig_mindphi, btag2cuts ) ;
-       fillSet( "h_mindphi_2b_metsig_050", "minDeltaPhi20", cuts ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 2b, METsig>50" ) ;
+ //    bookSet( "h_mindphi_2b_metsig_050", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&METsig>50)", nm2_metsig_mindphi, btag2cuts ) ;
+ //    fillSet( "h_mindphi_2b_metsig_050", "minDeltaPhi20", cuts ) ;
 
-       sprintf( htitle, "minDeltaPhi20, 2b, METsig>100" ) ;
-       bookSet( "h_mindphi_2b_metsig_100", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&METsig>100)", nm2_metsig_mindphi, btag2cuts ) ;
-       fillSet( "h_mindphi_2b_metsig_100", "minDeltaPhi20", cuts ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 2b, METsig>100" ) ;
+ //    bookSet( "h_mindphi_2b_metsig_100", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&METsig>100)", nm2_metsig_mindphi, btag2cuts ) ;
+ //    fillSet( "h_mindphi_2b_metsig_100", "minDeltaPhi20", cuts ) ;
 
-       sprintf( htitle, "minDeltaPhi20, 2b, METsig>150" ) ;
-       bookSet( "h_mindphi_2b_metsig_150", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&METsig>150)", nm2_metsig_mindphi, btag2cuts ) ;
-       fillSet( "h_mindphi_2b_metsig_150", "minDeltaPhi20", cuts ) ;
-
-
-
-       sprintf( htitle, "minDeltaPhi20, 2b, no MET cut" ) ;
-       bookSet( "h_mindphi_2b_no_met", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s)", nm2_metsig_mindphi, btag2cuts ) ;
-       fillSet( "h_mindphi_2b_no_met", "minDeltaPhi20", cuts ) ;
-
-       sprintf( htitle, "minDeltaPhi20, 2b, MET>100" ) ;
-       bookSet( "h_mindphi_2b_met_100", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&MET>100)", nm2_metsig_mindphi, btag2cuts ) ;
-       fillSet( "h_mindphi_2b_met_100", "minDeltaPhi20", cuts ) ;
-
-       sprintf( htitle, "minDeltaPhi20, 2b, MET>135" ) ;
-       bookSet( "h_mindphi_2b_met_135", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&MET>135)", nm2_metsig_mindphi, btag2cuts ) ;
-       fillSet( "h_mindphi_2b_met_135", "minDeltaPhi20", cuts ) ;
-
-       sprintf( htitle, "minDeltaPhi20, 2b, MET>190" ) ;
-       bookSet( "h_mindphi_2b_met_190", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&MET>190)", nm2_metsig_mindphi, btag2cuts ) ;
-       fillSet( "h_mindphi_2b_met_190", "minDeltaPhi20", cuts ) ;
-
-       sprintf( htitle, "minDeltaPhi20, 2b, MET>250" ) ;
-       bookSet( "h_mindphi_2b_met_250", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&MET>250)", nm2_metsig_mindphi, btag2cuts ) ;
-       fillSet( "h_mindphi_2b_met_250", "minDeltaPhi20", cuts ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 2b, METsig>150" ) ;
+ //    bookSet( "h_mindphi_2b_metsig_150", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&METsig>150)", nm2_metsig_mindphi, btag2cuts ) ;
+ //    fillSet( "h_mindphi_2b_metsig_150", "minDeltaPhi20", cuts ) ;
 
 
 
+ //    sprintf( htitle, "minDeltaPhi20, 2b, no MET cut" ) ;
+ //    bookSet( "h_mindphi_2b_no_met", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s)", nm2_metsig_mindphi, btag2cuts ) ;
+ //    fillSet( "h_mindphi_2b_no_met", "minDeltaPhi20", cuts ) ;
 
+ //    sprintf( htitle, "minDeltaPhi20, 2b, MET>100" ) ;
+ //    bookSet( "h_mindphi_2b_met_100", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&MET>100)", nm2_metsig_mindphi, btag2cuts ) ;
+ //    fillSet( "h_mindphi_2b_met_100", "minDeltaPhi20", cuts ) ;
 
-       sprintf( htitle, "minDeltaPhi20, 2b, METsig bin0 (<30)" ) ;
-       bookSet( "h_mindphi_2b_metsig_bin0", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&METsig<30)", nm2_metsig_mindphi, btag2cuts ) ;
-       fillSet( "h_mindphi_2b_metsig_bin0", "minDeltaPhi20", cuts ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 2b, MET>135" ) ;
+ //    bookSet( "h_mindphi_2b_met_135", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&MET>135)", nm2_metsig_mindphi, btag2cuts ) ;
+ //    fillSet( "h_mindphi_2b_met_135", "minDeltaPhi20", cuts ) ;
 
-       sprintf( htitle, "minDeltaPhi20, 2b, METsig bin1 (30,50)" ) ;
-       bookSet( "h_mindphi_2b_metsig_bin1", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&METsig>30&&METsig<50)", nm2_metsig_mindphi, btag2cuts ) ;
-       fillSet( "h_mindphi_2b_metsig_bin1", "minDeltaPhi20", cuts ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 2b, MET>190" ) ;
+ //    bookSet( "h_mindphi_2b_met_190", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&MET>190)", nm2_metsig_mindphi, btag2cuts ) ;
+ //    fillSet( "h_mindphi_2b_met_190", "minDeltaPhi20", cuts ) ;
 
-       sprintf( htitle, "minDeltaPhi20, 2b, METsig bin2 (50,100)" ) ;
-       bookSet( "h_mindphi_2b_metsig_bin2", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&METsig>50&&METsig<100)", nm2_metsig_mindphi, btag2cuts ) ;
-       fillSet( "h_mindphi_2b_metsig_bin2", "minDeltaPhi20", cuts ) ;
-
-       sprintf( htitle, "minDeltaPhi20, 2b, METsig bin3 (100,150)" ) ;
-       bookSet( "h_mindphi_2b_metsig_bin3", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&METsig>100&&METsig<150)", nm2_metsig_mindphi, btag2cuts ) ;
-       fillSet( "h_mindphi_2b_metsig_bin3", "minDeltaPhi20", cuts ) ;
-
-       sprintf( htitle, "minDeltaPhi20, 2b, METsig bin4 (>150)" ) ;
-       bookSet( "h_mindphi_2b_metsig_bin4", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&METsig>150)", nm2_metsig_mindphi, btag2cuts ) ;
-       fillSet( "h_mindphi_2b_metsig_bin4", "minDeltaPhi20", cuts ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 2b, MET>250" ) ;
+ //    bookSet( "h_mindphi_2b_met_250", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&MET>250)", nm2_metsig_mindphi, btag2cuts ) ;
+ //    fillSet( "h_mindphi_2b_met_250", "minDeltaPhi20", cuts ) ;
 
 
 
 
-       sprintf( htitle, "minDeltaPhi20, 2b, MET bin0 (<106)" ) ;
-       bookSet( "h_mindphi_2b_met_bin0", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&MET<106)", nm2_metsig_mindphi, btag2cuts ) ;
-       fillSet( "h_mindphi_2b_met_bin0", "minDeltaPhi20", cuts ) ;
 
-       sprintf( htitle, "minDeltaPhi20, 2b, MET bin1 (106,133)" ) ;
-       bookSet( "h_mindphi_2b_met_bin1", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&MET>106&&MET<133)", nm2_metsig_mindphi, btag2cuts ) ;
-       fillSet( "h_mindphi_2b_met_bin1", "minDeltaPhi20", cuts ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 2b, METsig bin0 (<30)" ) ;
+ //    bookSet( "h_mindphi_2b_metsig_bin0", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&METsig<30)", nm2_metsig_mindphi, btag2cuts ) ;
+ //    fillSet( "h_mindphi_2b_metsig_bin0", "minDeltaPhi20", cuts ) ;
 
-       sprintf( htitle, "minDeltaPhi20, 2b, MET bin2 (133,190)" ) ;
-       bookSet( "h_mindphi_2b_met_bin2", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&MET>133&&MET<190)", nm2_metsig_mindphi, btag2cuts ) ;
-       fillSet( "h_mindphi_2b_met_bin2", "minDeltaPhi20", cuts ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 2b, METsig bin1 (30,50)" ) ;
+ //    bookSet( "h_mindphi_2b_metsig_bin1", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&METsig>30&&METsig<50)", nm2_metsig_mindphi, btag2cuts ) ;
+ //    fillSet( "h_mindphi_2b_metsig_bin1", "minDeltaPhi20", cuts ) ;
 
-       sprintf( htitle, "minDeltaPhi20, 2b, MET bin3 (190,250)" ) ;
-       bookSet( "h_mindphi_2b_met_bin3", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&MET>190&&MET<250)", nm2_metsig_mindphi, btag2cuts ) ;
-       fillSet( "h_mindphi_2b_met_bin3", "minDeltaPhi20", cuts ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 2b, METsig bin2 (50,100)" ) ;
+ //    bookSet( "h_mindphi_2b_metsig_bin2", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&METsig>50&&METsig<100)", nm2_metsig_mindphi, btag2cuts ) ;
+ //    fillSet( "h_mindphi_2b_metsig_bin2", "minDeltaPhi20", cuts ) ;
 
-       sprintf( htitle, "minDeltaPhi20, 2b, MET bin4 (>250)" ) ;
-       bookSet( "h_mindphi_2b_met_bin4", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&MET>250)", nm2_metsig_mindphi, btag2cuts ) ;
-       fillSet( "h_mindphi_2b_met_bin4", "minDeltaPhi20", cuts ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 2b, METsig bin3 (100,150)" ) ;
+ //    bookSet( "h_mindphi_2b_metsig_bin3", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&METsig>100&&METsig<150)", nm2_metsig_mindphi, btag2cuts ) ;
+ //    fillSet( "h_mindphi_2b_metsig_bin3", "minDeltaPhi20", cuts ) ;
 
-
-
-
-       sprintf( htitle, "minDeltaPhi20, 3b SB, no METsig cut" ) ;
-       bookSet( "h_mindphi_3bSB_no_metsig", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&%s)", nm2_metsig_mindphi, btag3cuts, masssbcuts ) ;
-       fillSet( "h_mindphi_3bSB_no_metsig", "minDeltaPhi20", cuts ) ;
-
-       sprintf( htitle, "minDeltaPhi20, 3b SB, METsig>30" ) ;
-       bookSet( "h_mindphi_3bSB_metsig_030", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&%s&&METsig>30)", nm2_metsig_mindphi, btag3cuts, masssbcuts ) ;
-       fillSet( "h_mindphi_3bSB_metsig_030", "minDeltaPhi20", cuts ) ;
-
-       sprintf( htitle, "minDeltaPhi20, 3b SB, METsig>50" ) ;
-       bookSet( "h_mindphi_3bSB_metsig_050", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&%s&&METsig>50)", nm2_metsig_mindphi, btag3cuts, masssbcuts ) ;
-       fillSet( "h_mindphi_3bSB_metsig_050", "minDeltaPhi20", cuts ) ;
-
-       sprintf( htitle, "minDeltaPhi20, 3b SB, METsig>100" ) ;
-       bookSet( "h_mindphi_3bSB_metsig_100", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&%s&&METsig>100)", nm2_metsig_mindphi, btag3cuts, masssbcuts ) ;
-       fillSet( "h_mindphi_3bSB_metsig_100", "minDeltaPhi20", cuts ) ;
-
-       sprintf( htitle, "minDeltaPhi20, 3b SB, METsig>150" ) ;
-       bookSet( "h_mindphi_3bSB_metsig_150", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&%s&&METsig>150)", nm2_metsig_mindphi, btag3cuts, masssbcuts ) ;
-       fillSet( "h_mindphi_3bSB_metsig_150", "minDeltaPhi20", cuts ) ;
-
-
-
-       bool keep_data_blind(true) ;
-
-       sprintf( htitle, "minDeltaPhi20, 3b SIG, no METsig cut" ) ;
-       bookSet( "h_mindphi_3bSIG_no_metsig", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&%s)", nm2_metsig_mindphi, btag3cuts, masssigcuts ) ;
-       fillSet( "h_mindphi_3bSIG_no_metsig", "minDeltaPhi20", cuts, keep_data_blind ) ;
-
-       sprintf( htitle, "minDeltaPhi20, 3b SIG, METsig>30" ) ;
-       bookSet( "h_mindphi_3bSIG_metsig_030", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&%s&&METsig>30)", nm2_metsig_mindphi, btag3cuts, masssigcuts ) ;
-       fillSet( "h_mindphi_3bSIG_metsig_030", "minDeltaPhi20", cuts, keep_data_blind ) ;
-
-       sprintf( htitle, "minDeltaPhi20, 3b SIG, METsig>50" ) ;
-       bookSet( "h_mindphi_3bSIG_metsig_050", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&%s&&METsig>50)", nm2_metsig_mindphi, btag3cuts, masssigcuts ) ;
-       fillSet( "h_mindphi_3bSIG_metsig_050", "minDeltaPhi20", cuts, keep_data_blind ) ;
-
-       sprintf( htitle, "minDeltaPhi20, 3b SIG, METsig>100" ) ;
-       bookSet( "h_mindphi_3bSIG_metsig_100", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&%s&&METsig>100)", nm2_metsig_mindphi, btag3cuts, masssigcuts ) ;
-       fillSet( "h_mindphi_3bSIG_metsig_100", "minDeltaPhi20", cuts, keep_data_blind ) ;
-
-       sprintf( htitle, "minDeltaPhi20, 3b SIG, METsig>150" ) ;
-       bookSet( "h_mindphi_3bSIG_metsig_150", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&%s&&METsig>150)", nm2_metsig_mindphi, btag3cuts, masssigcuts ) ;
-       fillSet( "h_mindphi_3bSIG_metsig_150", "minDeltaPhi20", cuts, keep_data_blind ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 2b, METsig bin4 (>150)" ) ;
+ //    bookSet( "h_mindphi_2b_metsig_bin4", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&METsig>150)", nm2_metsig_mindphi, btag2cuts ) ;
+ //    fillSet( "h_mindphi_2b_metsig_bin4", "minDeltaPhi20", cuts ) ;
 
 
 
 
-       sprintf( htitle, "minDeltaPhi20, 4b SB, no METsig cut" ) ;
-       bookSet( "h_mindphi_4bSB_no_metsig", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&%s)", nm2_metsig_mindphi, btag4cuts, masssbcuts ) ;
-       fillSet( "h_mindphi_4bSB_no_metsig", "minDeltaPhi20", cuts, keep_data_blind ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 2b, MET bin0 (<106)" ) ;
+ //    bookSet( "h_mindphi_2b_met_bin0", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&MET<106)", nm2_metsig_mindphi, btag2cuts ) ;
+ //    fillSet( "h_mindphi_2b_met_bin0", "minDeltaPhi20", cuts ) ;
 
-       sprintf( htitle, "minDeltaPhi20, 4b SB, METsig>30" ) ;
-       bookSet( "h_mindphi_4bSB_metsig_030", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&%s&&METsig>30)", nm2_metsig_mindphi, btag4cuts, masssbcuts ) ;
-       fillSet( "h_mindphi_4bSB_metsig_030", "minDeltaPhi20", cuts, keep_data_blind ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 2b, MET bin1 (106,133)" ) ;
+ //    bookSet( "h_mindphi_2b_met_bin1", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&MET>106&&MET<133)", nm2_metsig_mindphi, btag2cuts ) ;
+ //    fillSet( "h_mindphi_2b_met_bin1", "minDeltaPhi20", cuts ) ;
 
-       sprintf( htitle, "minDeltaPhi20, 4b SB, METsig>50" ) ;
-       bookSet( "h_mindphi_4bSB_metsig_050", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&%s&&METsig>50)", nm2_metsig_mindphi, btag4cuts, masssbcuts ) ;
-       fillSet( "h_mindphi_4bSB_metsig_050", "minDeltaPhi20", cuts, keep_data_blind ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 2b, MET bin2 (133,190)" ) ;
+ //    bookSet( "h_mindphi_2b_met_bin2", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&MET>133&&MET<190)", nm2_metsig_mindphi, btag2cuts ) ;
+ //    fillSet( "h_mindphi_2b_met_bin2", "minDeltaPhi20", cuts ) ;
 
-       sprintf( htitle, "minDeltaPhi20, 4b SB, METsig>100" ) ;
-       bookSet( "h_mindphi_4bSB_metsig_100", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&%s&&METsig>100)", nm2_metsig_mindphi, btag4cuts, masssbcuts ) ;
-       fillSet( "h_mindphi_4bSB_metsig_100", "minDeltaPhi20", cuts, keep_data_blind ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 2b, MET bin3 (190,250)" ) ;
+ //    bookSet( "h_mindphi_2b_met_bin3", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&MET>190&&MET<250)", nm2_metsig_mindphi, btag2cuts ) ;
+ //    fillSet( "h_mindphi_2b_met_bin3", "minDeltaPhi20", cuts ) ;
 
-       sprintf( htitle, "minDeltaPhi20, 4b SB, METsig>150" ) ;
-       bookSet( "h_mindphi_4bSB_metsig_150", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&%s&&METsig>150)", nm2_metsig_mindphi, btag4cuts, masssbcuts ) ;
-       fillSet( "h_mindphi_4bSB_metsig_150", "minDeltaPhi20", cuts, keep_data_blind ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 2b, MET bin4 (>250)" ) ;
+ //    bookSet( "h_mindphi_2b_met_bin4", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&MET>250)", nm2_metsig_mindphi, btag2cuts ) ;
+ //    fillSet( "h_mindphi_2b_met_bin4", "minDeltaPhi20", cuts ) ;
 
 
 
-       sprintf( htitle, "minDeltaPhi20, 4b SIG, no METsig cut" ) ;
-       bookSet( "h_mindphi_4bSIG_no_metsig", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&%s)", nm2_metsig_mindphi, btag4cuts, masssigcuts ) ;
-       fillSet( "h_mindphi_4bSIG_no_metsig", "minDeltaPhi20", cuts, keep_data_blind ) ;
 
-       sprintf( htitle, "minDeltaPhi20, 4b SIG, METsig>30" ) ;
-       bookSet( "h_mindphi_4bSIG_metsig_030", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&%s&&METsig>30)", nm2_metsig_mindphi, btag4cuts, masssigcuts ) ;
-       fillSet( "h_mindphi_4bSIG_metsig_030", "minDeltaPhi20", cuts, keep_data_blind ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 3b SB, no METsig cut" ) ;
+ //    bookSet( "h_mindphi_3bSB_no_metsig", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&%s)", nm2_metsig_mindphi, btag3cuts, masssbcuts ) ;
+ //    fillSet( "h_mindphi_3bSB_no_metsig", "minDeltaPhi20", cuts ) ;
 
-       sprintf( htitle, "minDeltaPhi20, 4b SIG, METsig>50" ) ;
-       bookSet( "h_mindphi_4bSIG_metsig_050", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&%s&&METsig>50)", nm2_metsig_mindphi, btag4cuts, masssigcuts ) ;
-       fillSet( "h_mindphi_4bSIG_metsig_050", "minDeltaPhi20", cuts, keep_data_blind ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 3b SB, METsig>30" ) ;
+ //    bookSet( "h_mindphi_3bSB_metsig_030", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&%s&&METsig>30)", nm2_metsig_mindphi, btag3cuts, masssbcuts ) ;
+ //    fillSet( "h_mindphi_3bSB_metsig_030", "minDeltaPhi20", cuts ) ;
 
-       sprintf( htitle, "minDeltaPhi20, 4b SIG, METsig>100" ) ;
-       bookSet( "h_mindphi_4bSIG_metsig_100", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&%s&&METsig>100)", nm2_metsig_mindphi, btag4cuts, masssigcuts ) ;
-       fillSet( "h_mindphi_4bSIG_metsig_100", "minDeltaPhi20", cuts, keep_data_blind ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 3b SB, METsig>50" ) ;
+ //    bookSet( "h_mindphi_3bSB_metsig_050", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&%s&&METsig>50)", nm2_metsig_mindphi, btag3cuts, masssbcuts ) ;
+ //    fillSet( "h_mindphi_3bSB_metsig_050", "minDeltaPhi20", cuts ) ;
 
-       sprintf( htitle, "minDeltaPhi20, 4b SIG, METsig>150" ) ;
-       bookSet( "h_mindphi_4bSIG_metsig_150", htitle, 32, 0., 3.2 ) ;
-       sprintf( cuts, "(%s&&%s&&%s&&METsig>150)", nm2_metsig_mindphi, btag4cuts, masssigcuts ) ;
-       fillSet( "h_mindphi_4bSIG_metsig_150", "minDeltaPhi20", cuts, keep_data_blind ) ;
+ //    sprintf( htitle, "minDeltaPhi20, 3b SB, METsig>100" ) ;
+ //    bookSet( "h_mindphi_3bSB_metsig_100", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&%s&&METsig>100)", nm2_metsig_mindphi, btag3cuts, masssbcuts ) ;
+ //    fillSet( "h_mindphi_3bSB_metsig_100", "minDeltaPhi20", cuts ) ;
+
+ //    sprintf( htitle, "minDeltaPhi20, 3b SB, METsig>150" ) ;
+ //    bookSet( "h_mindphi_3bSB_metsig_150", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&%s&&METsig>150)", nm2_metsig_mindphi, btag3cuts, masssbcuts ) ;
+ //    fillSet( "h_mindphi_3bSB_metsig_150", "minDeltaPhi20", cuts ) ;
+
+
+
+ //    bool keep_data_blind(true) ;
+
+ //    sprintf( htitle, "minDeltaPhi20, 3b SIG, no METsig cut" ) ;
+ //    bookSet( "h_mindphi_3bSIG_no_metsig", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&%s)", nm2_metsig_mindphi, btag3cuts, masssigcuts ) ;
+ //    fillSet( "h_mindphi_3bSIG_no_metsig", "minDeltaPhi20", cuts, keep_data_blind ) ;
+
+ //    sprintf( htitle, "minDeltaPhi20, 3b SIG, METsig>30" ) ;
+ //    bookSet( "h_mindphi_3bSIG_metsig_030", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&%s&&METsig>30)", nm2_metsig_mindphi, btag3cuts, masssigcuts ) ;
+ //    fillSet( "h_mindphi_3bSIG_metsig_030", "minDeltaPhi20", cuts, keep_data_blind ) ;
+
+ //    sprintf( htitle, "minDeltaPhi20, 3b SIG, METsig>50" ) ;
+ //    bookSet( "h_mindphi_3bSIG_metsig_050", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&%s&&METsig>50)", nm2_metsig_mindphi, btag3cuts, masssigcuts ) ;
+ //    fillSet( "h_mindphi_3bSIG_metsig_050", "minDeltaPhi20", cuts, keep_data_blind ) ;
+
+ //    sprintf( htitle, "minDeltaPhi20, 3b SIG, METsig>100" ) ;
+ //    bookSet( "h_mindphi_3bSIG_metsig_100", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&%s&&METsig>100)", nm2_metsig_mindphi, btag3cuts, masssigcuts ) ;
+ //    fillSet( "h_mindphi_3bSIG_metsig_100", "minDeltaPhi20", cuts, keep_data_blind ) ;
+
+ //    sprintf( htitle, "minDeltaPhi20, 3b SIG, METsig>150" ) ;
+ //    bookSet( "h_mindphi_3bSIG_metsig_150", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&%s&&METsig>150)", nm2_metsig_mindphi, btag3cuts, masssigcuts ) ;
+ //    fillSet( "h_mindphi_3bSIG_metsig_150", "minDeltaPhi20", cuts, keep_data_blind ) ;
+
+
+
+
+ //    sprintf( htitle, "minDeltaPhi20, 4b SB, no METsig cut" ) ;
+ //    bookSet( "h_mindphi_4bSB_no_metsig", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&%s)", nm2_metsig_mindphi, btag4cuts, masssbcuts ) ;
+ //    fillSet( "h_mindphi_4bSB_no_metsig", "minDeltaPhi20", cuts, keep_data_blind ) ;
+
+ //    sprintf( htitle, "minDeltaPhi20, 4b SB, METsig>30" ) ;
+ //    bookSet( "h_mindphi_4bSB_metsig_030", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&%s&&METsig>30)", nm2_metsig_mindphi, btag4cuts, masssbcuts ) ;
+ //    fillSet( "h_mindphi_4bSB_metsig_030", "minDeltaPhi20", cuts, keep_data_blind ) ;
+
+ //    sprintf( htitle, "minDeltaPhi20, 4b SB, METsig>50" ) ;
+ //    bookSet( "h_mindphi_4bSB_metsig_050", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&%s&&METsig>50)", nm2_metsig_mindphi, btag4cuts, masssbcuts ) ;
+ //    fillSet( "h_mindphi_4bSB_metsig_050", "minDeltaPhi20", cuts, keep_data_blind ) ;
+
+ //    sprintf( htitle, "minDeltaPhi20, 4b SB, METsig>100" ) ;
+ //    bookSet( "h_mindphi_4bSB_metsig_100", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&%s&&METsig>100)", nm2_metsig_mindphi, btag4cuts, masssbcuts ) ;
+ //    fillSet( "h_mindphi_4bSB_metsig_100", "minDeltaPhi20", cuts, keep_data_blind ) ;
+
+ //    sprintf( htitle, "minDeltaPhi20, 4b SB, METsig>150" ) ;
+ //    bookSet( "h_mindphi_4bSB_metsig_150", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&%s&&METsig>150)", nm2_metsig_mindphi, btag4cuts, masssbcuts ) ;
+ //    fillSet( "h_mindphi_4bSB_metsig_150", "minDeltaPhi20", cuts, keep_data_blind ) ;
+
+
+
+ //    sprintf( htitle, "minDeltaPhi20, 4b SIG, no METsig cut" ) ;
+ //    bookSet( "h_mindphi_4bSIG_no_metsig", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&%s)", nm2_metsig_mindphi, btag4cuts, masssigcuts ) ;
+ //    fillSet( "h_mindphi_4bSIG_no_metsig", "minDeltaPhi20", cuts, keep_data_blind ) ;
+
+ //    sprintf( htitle, "minDeltaPhi20, 4b SIG, METsig>30" ) ;
+ //    bookSet( "h_mindphi_4bSIG_metsig_030", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&%s&&METsig>30)", nm2_metsig_mindphi, btag4cuts, masssigcuts ) ;
+ //    fillSet( "h_mindphi_4bSIG_metsig_030", "minDeltaPhi20", cuts, keep_data_blind ) ;
+
+ //    sprintf( htitle, "minDeltaPhi20, 4b SIG, METsig>50" ) ;
+ //    bookSet( "h_mindphi_4bSIG_metsig_050", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&%s&&METsig>50)", nm2_metsig_mindphi, btag4cuts, masssigcuts ) ;
+ //    fillSet( "h_mindphi_4bSIG_metsig_050", "minDeltaPhi20", cuts, keep_data_blind ) ;
+
+ //    sprintf( htitle, "minDeltaPhi20, 4b SIG, METsig>100" ) ;
+ //    bookSet( "h_mindphi_4bSIG_metsig_100", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&%s&&METsig>100)", nm2_metsig_mindphi, btag4cuts, masssigcuts ) ;
+ //    fillSet( "h_mindphi_4bSIG_metsig_100", "minDeltaPhi20", cuts, keep_data_blind ) ;
+
+ //    sprintf( htitle, "minDeltaPhi20, 4b SIG, METsig>150" ) ;
+ //    bookSet( "h_mindphi_4bSIG_metsig_150", htitle, 32, 0., 3.2 ) ;
+ //    sprintf( cuts, "(%s&&%s&&%s&&METsig>150)", nm2_metsig_mindphi, btag4cuts, masssigcuts ) ;
+ //    fillSet( "h_mindphi_4bSIG_metsig_150", "minDeltaPhi20", cuts, keep_data_blind ) ;
 
 
 
