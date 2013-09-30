@@ -160,6 +160,9 @@
       inReducedTree -> SetBranchAddress("passCleaning", &passCleaning ) ;
       inReducedTree -> SetBranchAddress("buggyEvent", &buggyEvent ) ;
 
+      float higgsMbb1MassDiff, higgsMbb2MassDiff ;
+      inReducedTree -> SetBranchAddress("higgsMbb1MassDiff", &higgsMbb1MassDiff ) ;
+      inReducedTree -> SetBranchAddress("higgsMbb2MassDiff", &higgsMbb2MassDiff ) ;
 
 
 
@@ -213,6 +216,13 @@
 
       int nbtag_cat(0) ;
       outReducedTree -> Branch( "nbtag_cat", &nbtag_cat, "nbtag_cat/I" ) ;
+
+      float deltam(0) ;
+      outReducedTree -> Branch( "deltam", &deltam, "deltam/F" ) ;
+
+      float avem(0) ;
+      outReducedTree -> Branch( "avem", &avem, "avem/F" ) ;
+
 
 
 
@@ -272,6 +282,9 @@
          } else if ( CSVbest2>0.898&&CSVbest3>0.679&&CSVbest4>0.244 ) {
             nbtag_cat = 4 ;
          }
+
+         deltam =  abs(higgsMbb1MassDiff-higgsMbb2MassDiff) ;
+         avem   = 0.5*(higgsMbb1MassDiff+higgsMbb2MassDiff) ;
 
          outReducedTree->Fill() ;
 
