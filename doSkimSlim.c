@@ -19,7 +19,7 @@
 //          .L doSkimSlim.C+
 //
 
-  void doSkimSlim( const char* infile_name, bool doSlim = false, const char* outdir = ""  ) {
+  void doSkimSlim( const char* infile_name, bool doSlim = false, const char* outdir = "", bool doSkim = true  ) {
 
       TFile* infile = new TFile( infile_name ) ;
       if ( ! (infile->IsOpen()) ) return ;
@@ -139,21 +139,21 @@
 
 
 
-
-
      //--- Vars needed to decide whether or not to save the event.
-      bool trig1, trig2, trig3 ;
+      bool trig1, trig2 ;
       inReducedTree -> SetBranchAddress("passMC_DiCentralPFJet30_PFMET80_BTagCSV07", &trig1 ) ;
-      inReducedTree -> SetBranchAddress("passMC_DiPFJet80_DiPFJet30_BTagCSVd07d05", &trig2 ) ;
-      inReducedTree -> SetBranchAddress("passMC_PFMET150", &trig3 ) ;
+      inReducedTree -> SetBranchAddress("passMC_PFMET150", &trig2 ) ;
+      //inReducedTree -> SetBranchAddress("passMC_DiPFJet80_DiPFJet30_BTagCSVd07d05", &trig3 ) ;
 
       int njets20 ;
       inReducedTree -> SetBranchAddress("njets20", &njets20 ) ;
       int njets30 ;
       inReducedTree -> SetBranchAddress("njets30", &njets30 ) ;
 
-      float CSVbest2 ;
+      float CSVbest2, CSVbest3, CSVbest4 ;
       inReducedTree -> SetBranchAddress("CSVbest2", &CSVbest2) ;
+      inReducedTree -> SetBranchAddress("CSVbest3", &CSVbest3) ;
+      inReducedTree -> SetBranchAddress("CSVbest4", &CSVbest4) ;
 
       bool cutPV, passCleaning, buggyEvent ;
       inReducedTree -> SetBranchAddress("cutPV", &cutPV ) ;
@@ -180,7 +180,11 @@
             if ( outfile_name.Contains("-skim.root") ) {
                outfile_name.ReplaceAll( "-skim.root", "-slimskim.root" ) ;
             } else {
-               outfile_name.ReplaceAll( ".root", "-slimskim.root" ) ;
+               if ( doSkim ) {
+                  outfile_name.ReplaceAll( ".root", "-slimskim.root" ) ;
+               } else {
+                  outfile_name.ReplaceAll( ".root", "-slim.root" ) ;
+               }
             }
          } else {
             outfile_name.ReplaceAll( ".root", "-skim.root" ) ;
@@ -206,6 +210,9 @@
       TFile* outfile = new TFile( outfile_name, "recreate" ) ;
       TTree* outReducedTree = inReducedTree->CloneTree(0) ;
 
+
+      int nbtag_cat(0) ;
+      outReducedTree -> Branch( "nbtag_cat", &nbtag_cat, "nbtag_cat/I" ) ;
 
 
 
@@ -241,16 +248,30 @@
 
          inReducedTree -> GetEntry(ievt) ;
 
-         if ( !cutPV ) continue ;
-         if ( !passCleaning ) continue ;
-         if ( buggyEvent ) continue ;
-         if ( !(trig1 || trig2 || trig3) ) continue ;
-         //-----------
-         // Owen: make njets cut safe for pt>20 or pt>30.
-         //       this means you must cut on the appropriate njets variable when using the skim output.
-         if ( njets20<4 || njets30>5 ) continue ;
-         //-----------
-         if ( CSVbest2 < 0.898 ) continue ;
+         if ( doSkim ) {
+
+            if ( !cutPV ) continue ;
+            if ( !passCleaning ) continue ;
+            if ( buggyEvent ) continue ;
+            if ( !(trig1 || trig2) ) continue ;
+            //-----------
+            // Owen: make njets cut safe for pt>20 or pt>30.
+            //       this means you must cut on the appropriate njets variable when using the skim output.
+            if ( njets20<4 || njets30>5 ) continue ;
+            //-----------
+        /// if ( CSVbest2 < 0.898 ) continue ;
+
+         }
+
+         nbtag_cat = 0 ;
+
+         if ( CSVbest2>0.898&&CSVbest3<0.679 ) {
+            nbtag_cat = 2 ;
+         } else if ( CSVbest2>0.898&&CSVbest3>0.679&&CSVbest4<0.244 ) {
+            nbtag_cat = 3 ;
+         } else if ( CSVbest2>0.898&&CSVbest3>0.679&&CSVbest4>0.244 ) {
+            nbtag_cat = 4 ;
+         }
 
          outReducedTree->Fill() ;
 
