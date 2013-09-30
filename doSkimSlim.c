@@ -41,6 +41,8 @@
          inReducedTree -> SetBranchStatus("cutPV",1) ;
          inReducedTree -> SetBranchStatus("passCleaning",1) ;
          inReducedTree -> SetBranchStatus("buggyEvent",1) ;
+         inReducedTree -> SetBranchStatus("caloMET",1) ;
+         inReducedTree -> SetBranchStatus("maxTOBTECjetDeltaMult",1) ;
 
         //--- trigger
          inReducedTree -> SetBranchStatus("passMC_DiCentralPFJet30_PFMET80_BTagCSV07",1) ;
@@ -49,12 +51,14 @@
          inReducedTree -> SetBranchStatus("pass_DiCentralPFJet30_PFMET80_BTagCSV07",1) ;
          inReducedTree -> SetBranchStatus("pass_DiPFJet80_DiPFJet30_BTagCSVd07d05",1) ;
          inReducedTree -> SetBranchStatus("pass_PFMET150",1) ;
+         inReducedTree -> SetBranchStatus("pass_DiCentralPFJet30_PFMHT80",1) ;
 
         //--- lepton veto vars
          inReducedTree -> SetBranchStatus("nMuons",1) ;
          inReducedTree -> SetBranchStatus("nElectrons",1) ;
          inReducedTree -> SetBranchStatus("nIsoTracks15_005_03",1) ;
          inReducedTree -> SetBranchStatus("nIsoTracks5_005_03",1) ;
+         inReducedTree -> SetBranchStatus("nIsoPFcands10_010",1) ;
          inReducedTree -> SetBranchStatus("nTausLoose",1) ;
 
         //--- njets
@@ -92,6 +96,7 @@
          inReducedTree -> SetBranchStatus("nGoodPV",1) ;
          inReducedTree -> SetBranchStatus("m0",1) ;
          inReducedTree -> SetBranchStatus("m12",1) ;
+         inReducedTree -> SetBranchStatus("topPtWeight",1) ;
 
         //--- jet pt
          inReducedTree -> SetBranchStatus("jetpt1",1) ;
@@ -120,6 +125,9 @@
          inReducedTree -> SetBranchStatus("nGluonsSplitToC",1) ;
          inReducedTree -> SetBranchStatus("nGluonsSplitToB",1) ;
 
+        //--- a few other things
+         inReducedTree -> SetBranchStatus("maxDeltaPhiAll",1) ;
+         inReducedTree -> SetBranchStatus("maxDeltaPhiAll30",1) ;
 
 
       } else {
