@@ -40,14 +40,15 @@
        int compind ;
 
        char rtdir[10000] ;
-       sprintf( rtdir, "/Users/owen/work/cms/hadronic-susy-bjets/hbb/reduced-trees-sept17-2013-v71-1s/" ) ;
+       //// sprintf( rtdir, "/Users/owen/work/cms/hadronic-susy-bjets/hbb/reduced-trees-sept17-2013-v71-1s/" ) ;
+       sprintf( rtdir, "/Users/owen/work/cms/hadronic-susy-bjets/hbb/reduced-trees-skim-sept17-2013-v71-1s/" ) ;
        char files_string[10000] ;
        int n_files_added ;
 
     //-- Data
        compind = 0 ;
        sprintf( compname[compind], "data" ) ;
-       sprintf( files_string, "%s/*MET_Run2012*slimskim.root", rtdir ) ;
+       sprintf( files_string, "%s/*MET_Run2012*-skim.root", rtdir ) ;
        n_files_added = compchain[compind] -> Add( files_string ) ;
        printf(" Added %d files for comp %s\n", n_files_added, compname[compind] ) ;
        compcolor[compind] = 0 ;
@@ -55,7 +56,7 @@
     //-- Zinvisible
        compind = 1 ;
        sprintf( compname[compind], "znn" ) ;
-       sprintf( files_string, "%s/*ZJetsToNuNu*slimskim.root", rtdir ) ;
+       sprintf( files_string, "%s/*ZJetsToNuNu*-skim.root", rtdir ) ;
        n_files_added = compchain[compind] -> Add( files_string ) ;
        printf(" Added %d files for comp %s\n", n_files_added, compname[compind] ) ;
        ///compcolor[compind] = 416-3 ; // kGreen = 416
@@ -64,7 +65,7 @@
     //-- ttbar, 0 lepton
        compind = 2 ;
        sprintf( compname[compind], "tt0l" ) ;
-       sprintf( files_string, "%s/*TTJets_HadronicMGDecays_8TeV*slimskim.root", rtdir ) ;
+       sprintf( files_string, "%s/*TTJets_HadronicMGDecays_8TeV*-skim.root", rtdir ) ;
        n_files_added = compchain[compind] -> Add( files_string ) ;
        printf(" Added %d files for comp %s\n", n_files_added, compname[compind] ) ;
        ///compcolor[compind] = 600-7 ; // kBlue = 600
@@ -73,7 +74,7 @@
     //-- ttbar, 2 lepton
        compind = 3 ;
        sprintf( compname[compind], "tt2l" ) ;
-       sprintf( files_string, "%s/*TTJets_FullLeptMGDecays_8TeV*slimskim.root", rtdir ) ;
+       sprintf( files_string, "%s/*TTJets_FullLeptMGDecays_8TeV*-skim.root", rtdir ) ;
        n_files_added = compchain[compind] -> Add( files_string ) ;
        printf(" Added %d files for comp %s\n", n_files_added, compname[compind] ) ;
        /////compcolor[compind] = 600-9 ; // kBlue = 600
@@ -82,7 +83,7 @@
     //-- ttbar, 1 lepton
        compind = 4 ;
        sprintf( compname[compind], "tt1l" ) ;
-       sprintf( files_string, "%s/*TTJets_SemiLeptMGDecays_8TeV*slimskim.root", rtdir ) ;
+       sprintf( files_string, "%s/*TTJets_SemiLeptMGDecays_8TeV*-skim.root", rtdir ) ;
        n_files_added = compchain[compind] -> Add( files_string ) ;
        printf(" Added %d files for comp %s\n", n_files_added, compname[compind] ) ;
        /////compcolor[compind] = 600-9 ; // kBlue = 600
@@ -91,7 +92,7 @@
     //-- QCD with b bbar.
        compind = 5 ;
        sprintf( compname[compind], "qcd_bb" ) ;
-       sprintf( files_string, "%s/*BJets_HT*slimskim.root", rtdir ) ;
+       sprintf( files_string, "%s/*BJets_HT*-skim.root", rtdir ) ;
        n_files_added = compchain[compind] -> Add( files_string ) ;
        printf(" Added %d files for comp %s\n", n_files_added, compname[compind] ) ;
        //// compcolor[compind] = 2 ;
@@ -100,7 +101,7 @@
  // //-- QCD nominal.
  //    compind = 4 ;
  //    sprintf( compname[compind], "qcd" ) ;
- //    sprintf( files_string, "%s/*QCD*slimskim.root", rtdir ) ;
+ //    sprintf( files_string, "%s/*QCD*-skim.root", rtdir ) ;
  //    n_files_added = compchain[compind] -> Add( files_string ) ;
  //    printf(" Added %d files for comp %s\n", n_files_added, compname[compind] ) ;
  //    compcolor[compind] = 2 ;

@@ -223,6 +223,10 @@
       float avem(0) ;
       outReducedTree -> Branch( "avem", &avem, "avem/F" ) ;
 
+      int metsig_bin(0) ;
+      outReducedTree -> Branch( "metsig_bin", &metsig_bin, "metsig_bin/I" ) ;
+
+
 
 
 
@@ -283,8 +287,19 @@
             nbtag_cat = 4 ;
          }
 
+        //--- some derived variables for convenience.
          deltam =  abs(higgsMbb1MassDiff-higgsMbb2MassDiff) ;
          avem   = 0.5*(higgsMbb1MassDiff+higgsMbb2MassDiff) ;
+         metsig_bin = 0 ;
+         if ( METsig>30 && METsig<=50 ) {
+            metsig_bin = 1 ;
+         } else if ( METsig>50 && METsig<=100 ) {
+            metsig_bin = 2 ;
+         } else if ( METsig>100 && METsig<=150 ) {
+            metsig_bin = 3 ;
+         } else if ( METsig>150 ) {
+            metsig_bin = 4 ;
+         }
 
          outReducedTree->Fill() ;
 
