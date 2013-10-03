@@ -164,6 +164,9 @@
       inReducedTree -> SetBranchAddress("higgsMbb1MassDiff", &higgsMbb1MassDiff ) ;
       inReducedTree -> SetBranchAddress("higgsMbb2MassDiff", &higgsMbb2MassDiff ) ;
 
+      float METsig ;
+      inReducedTree -> SetBranchAddress("METsig", &METsig ) ;
+
 
 
      //--- Open output file
