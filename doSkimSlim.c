@@ -128,7 +128,9 @@
         //--- a few other things
          inReducedTree -> SetBranchStatus("maxDeltaPhiAll",1) ;
          inReducedTree -> SetBranchStatus("maxDeltaPhiAll30",1) ;
-
+         inReducedTree -> SetBranchStatus("minDeltaPhi20_eta5_noIdAll_nobeta",1) ;
+         inReducedTree -> SetBranchStatus("minDeltaPhiAll20",1) ;
+         inReducedTree -> SetBranchStatus("minDeltaPhi20_eta5_noIdAll",1) ;
 
       } else {
 
@@ -274,9 +276,11 @@
             //-----------
             // Owen: make njets cut safe for pt>20 or pt>30.
             //       this means you must cut on the appropriate njets variable when using the skim output.
-            if ( njets20<4 || njets30>5 ) continue ;
+            //if ( njets20<4 || njets30>5 ) continue ;
+            //---
+            if ( njets20<4 || njets20>5 ) continue ;
             //-----------
-        /// if ( CSVbest2 < 0.898 ) continue ;
+            if ( CSVbest2 < 0.898 ) continue ;
 
          }
 
