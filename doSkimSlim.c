@@ -47,11 +47,13 @@
         //--- trigger
          inReducedTree -> SetBranchStatus("passMC_DiCentralPFJet30_PFMET80_BTagCSV07",1) ;
          inReducedTree -> SetBranchStatus("passMC_DiPFJet80_DiPFJet30_BTagCSVd07d05",1) ;
+         inReducedTree -> SetBranchStatus("passMC_DiCentralPFJet30_PFMHT80",1) ;
          inReducedTree -> SetBranchStatus("passMC_PFMET150",1) ;
-         inReducedTree -> SetBranchStatus("pass_DiCentralPFJet30_PFMET80_BTagCSV07",1) ;
-         inReducedTree -> SetBranchStatus("pass_DiPFJet80_DiPFJet30_BTagCSVd07d05",1) ;
-         inReducedTree -> SetBranchStatus("pass_PFMET150",1) ;
-         inReducedTree -> SetBranchStatus("pass_DiCentralPFJet30_PFMHT80",1) ;
+
+         inReducedTree -> SetBranchStatus(  "pass_DiCentralPFJet30_PFMET80_BTagCSV07",1) ;
+         inReducedTree -> SetBranchStatus(  "pass_DiPFJet80_DiPFJet30_BTagCSVd07d05",1) ;
+         inReducedTree -> SetBranchStatus(  "pass_PFMET150",1) ;
+         inReducedTree -> SetBranchStatus(  "pass_DiCentralPFJet30_PFMHT80",1) ;
 
         //--- lepton veto vars
          inReducedTree -> SetBranchStatus("nMuons",1) ;
@@ -142,10 +144,10 @@
 
 
      //--- Vars needed to decide whether or not to save the event.
-      bool trig1, trig2 ;
+      bool trig1, trig2, trig3 ;
       inReducedTree -> SetBranchAddress("passMC_DiCentralPFJet30_PFMET80_BTagCSV07", &trig1 ) ;
       inReducedTree -> SetBranchAddress("passMC_PFMET150", &trig2 ) ;
-      //inReducedTree -> SetBranchAddress("passMC_DiPFJet80_DiPFJet30_BTagCSVd07d05", &trig3 ) ;
+      inReducedTree -> SetBranchAddress("passMC_DiCentralPFJet30_PFMHT80", &trig3 ) ;
 
       int njets20 ;
       inReducedTree -> SetBranchAddress("njets20", &njets20 ) ;
@@ -272,7 +274,7 @@
             if ( !cutPV ) continue ;
             if ( !passCleaning ) continue ;
             if ( buggyEvent ) continue ;
-            if ( !(trig1 || trig2) ) continue ;
+            if ( !(trig1 || trig2 || trig3) ) continue ;
             //-----------
             // Owen: make njets cut safe for pt>20 or pt>30.
             //       this means you must cut on the appropriate njets variable when using the skim output.
