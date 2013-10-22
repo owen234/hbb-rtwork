@@ -43,7 +43,8 @@
       printf("\n\n Setting up reduced tree chains.\n\n" ) ;
 
 
-      char rtdir[10000] = "/Users/owen/work/cms/hadronic-susy-bjets/hbb/reduced-trees-qcd-study-sept30-2013" ;
+      //char rtdir[10000] = "/Users/owen/work/cms/hadronic-susy-bjets/hbb/reduced-trees-qcd-study-sept30-2013" ;
+      char rtdir[10000] = "/Users/owen/work/cms/hadronic-susy-bjets/hbb/reduced-trees-qcd-study-oct8-2013" ;
 
       printf("\n\n\n   Reduced tree directory: %s\n\n\n", rtdir ) ;
 
@@ -110,7 +111,8 @@
       sprintf( maxdrcut, "%s", "deltaRmax_hh<2.2" ) ;
 
       char mindphicut[10000] ;
-      sprintf( mindphicut, "%s", "((METsig>50&&minDeltaPhi20>0.3)||(METsig<50&&minDeltaPhi20>0.5))" ) ;
+      ///// sprintf( mindphicut, "%s", "((METsig>50&&minDeltaPhi20>0.3)||(METsig<50&&minDeltaPhi20>0.5))" ) ;
+      sprintf( mindphicut, "%s", "((METsig>50&&minDeltaPhi20_eta5_noIdAll_nobeta>0.3)||(METsig<50&&minDeltaPhi20_eta5_noIdAll_nobeta>0.5))" ) ;
 
       char jet2ptcut[10000] ;
       sprintf( jet2ptcut, "%s", "jetpt2>50" ) ;
@@ -133,6 +135,15 @@
 
       char allcommoncuts[10000] ;
       sprintf( allcommoncuts, "(%s)&&(%s)&&(%s)&&(%s)&&(%s)", skimcuts, leptonveto, maxdrcut, jet2ptcut, mindphicut ) ;
+
+      char nomindphicuts[10000] ;
+      sprintf( nomindphicuts, "(%s)&&(%s)&&(%s)&&(%s)", skimcuts, leptonveto, maxdrcut, jet2ptcut ) ;
+
+
+
+
+
+
 
 
     //--- METsig
@@ -512,6 +523,9 @@
       TH2F* h_deltam_vs_avem_ttbar_allcuts = new TH2F( "h_deltam_vs_avem_ttbar_allcuts", "Delta m vs Ave mass, ttbar, all cuts", 40, 0., 400., 30, 0., 300. ) ;
       h_deltam_vs_avem_ttbar_allcuts -> Sumw2() ;
 
+      TH2F* h_deltam_vs_avem_ttbar_nomindphi = new TH2F( "h_deltam_vs_avem_ttbar_nomindphi", "Delta m vs Ave mass, ttbar, no minDeltaPhi", 40, 0., 400., 30, 0., 300. ) ;
+      h_deltam_vs_avem_ttbar_nomindphi -> Sumw2() ;
+
 
 
 
@@ -656,6 +670,71 @@
       can->Update() ; can->Draw() ;
 
 
+    //======= ttbar, NB bin vs METsig bin plot
+
+      TH2F* h_nb_vs_metsig_ttbar  = new TH2F( "h_nb_vs_metsig_ttbar", "NB vs METsig, ttbar",  4, 0.5, 4.5,  3, 0.5, 3.5 ) ;
+
+      h_nb_vs_metsig_ttbar -> Sumw2() ;
+      h_nb_vs_metsig_ttbar -> GetXaxis() -> SetBinLabel( 1, "S bin 1" ) ;
+      h_nb_vs_metsig_ttbar -> GetXaxis() -> SetBinLabel( 2, "S bin 2" ) ;
+      h_nb_vs_metsig_ttbar -> GetXaxis() -> SetBinLabel( 3, "S bin 3" ) ;
+      h_nb_vs_metsig_ttbar -> GetXaxis() -> SetBinLabel( 4, "S bin 4" ) ;
+      h_nb_vs_metsig_ttbar -> GetYaxis() -> SetBinLabel( 1, "Nb 4" ) ;
+      h_nb_vs_metsig_ttbar -> GetYaxis() -> SetBinLabel( 2, "Nb 3" ) ;
+      h_nb_vs_metsig_ttbar -> GetYaxis() -> SetBinLabel( 3, "Nb 2" ) ;
+
+      TH2F* h_nb_vs_metsig_ttbar_nomindphi = (TH2F*) h_nb_vs_metsig_ttbar -> Clone( "h_nb_vs_metsig_ttbar_nomindphi" ) ;
+      h_nb_vs_metsig_ttbar_nomindphi -> Sumw2() ;
+      h_nb_vs_metsig_ttbar_nomindphi -> SetTitle( "NB vs METsig, ttbar, no minDeltaPhi cut" ) ;
+
+      sprintf( arg1, "(5-nbtag_cat):metsig_bin>>h_nb_vs_metsig_ttbar" ) ;
+      sprintf( allcuts, "(%s&&nbtag_cat>=2)*weight3*%.0f", allcommoncuts, dataIntLumiIPB ) ;
+      printf("\n %s : %s\n", arg1, allcuts ) ; fflush(stdout) ;
+      tt_chain -> Draw( arg1, allcuts ) ;
+      h_nb_vs_metsig_ttbar -> Draw( "box" ) ;
+      can->Update() ; can->Draw() ;
+
+      sprintf( arg1, "(5-nbtag_cat):metsig_bin>>h_nb_vs_metsig_ttbar_nomindphi" ) ;
+      sprintf( allcuts, "(%s&&nbtag_cat>=2)*weight3*%.0f", nomindphicuts, dataIntLumiIPB ) ;
+      printf("\n %s : %s\n", arg1, allcuts ) ; fflush(stdout) ;
+      tt_chain -> Draw( arg1, allcuts ) ;
+      h_nb_vs_metsig_ttbar_nomindphi -> Draw( "box" ) ;
+      can->Update() ; can->Draw() ;
+
+
+
+
+    //======= QCD, NB bin vs METsig bin plot
+
+      TH2F* h_nb_vs_metsig_qcd  = new TH2F( "h_nb_vs_metsig_qcd", "NB vs METsig, qcd",  4, 0.5, 4.5,  3, 0.5, 3.5 ) ;
+
+      h_nb_vs_metsig_qcd -> Sumw2() ;
+      h_nb_vs_metsig_qcd -> GetXaxis() -> SetBinLabel( 1, "S bin 1" ) ;
+      h_nb_vs_metsig_qcd -> GetXaxis() -> SetBinLabel( 2, "S bin 2" ) ;
+      h_nb_vs_metsig_qcd -> GetXaxis() -> SetBinLabel( 3, "S bin 3" ) ;
+      h_nb_vs_metsig_qcd -> GetXaxis() -> SetBinLabel( 4, "S bin 4" ) ;
+      h_nb_vs_metsig_qcd -> GetYaxis() -> SetBinLabel( 1, "Nb 4" ) ;
+      h_nb_vs_metsig_qcd -> GetYaxis() -> SetBinLabel( 2, "Nb 3" ) ;
+      h_nb_vs_metsig_qcd -> GetYaxis() -> SetBinLabel( 3, "Nb 2" ) ;
+
+      TH2F* h_nb_vs_metsig_qcd_nomindphi = (TH2F*) h_nb_vs_metsig_qcd -> Clone( "h_nb_vs_metsig_qcd_nomindphi" ) ;
+      h_nb_vs_metsig_qcd_nomindphi -> Sumw2() ;
+      h_nb_vs_metsig_qcd_nomindphi -> SetTitle( "NB vs METsig, qcd, no minDeltaPhi cut" ) ;
+
+
+      sprintf( arg1, "(5-nbtag_cat):metsig_bin>>h_nb_vs_metsig_qcd" ) ;
+      sprintf( allcuts, "(%s&&nbtag_cat>=2)*weight3*%.0f", allcommoncuts, dataIntLumiIPB ) ;
+      printf("\n %s : %s\n", arg1, allcuts ) ; fflush(stdout) ;
+      qcd_chain -> Draw( arg1, allcuts ) ;
+      h_nb_vs_metsig_qcd -> Draw( "box" ) ;
+      can->Update() ; can->Draw() ;
+
+      sprintf( arg1, "(5-nbtag_cat):metsig_bin>>h_nb_vs_metsig_qcd_nomindphi" ) ;
+      sprintf( allcuts, "(%s&&nbtag_cat>=2)*weight3*%.0f", nomindphicuts, dataIntLumiIPB ) ;
+      printf("\n %s : %s\n", arg1, allcuts ) ; fflush(stdout) ;
+      qcd_chain -> Draw( arg1, allcuts ) ;
+      h_nb_vs_metsig_qcd_nomindphi -> Draw( "box" ) ;
+      can->Update() ; can->Draw() ;
 
 
 
@@ -1108,6 +1187,13 @@
       printf("\n %s : %s\n", arg1, allcuts ) ; fflush(stdout) ;
       tt_chain -> Draw( arg1, allcuts ) ;
       h_deltam_vs_avem_ttbar_allcuts -> Draw("box") ;
+      can->Update() ; can->Draw() ;
+
+      sprintf( arg1, "deltam:avem>>h_deltam_vs_avem_ttbar_nomindphi" ) ;
+      sprintf( allcuts, "(%s&&nbtag_cat>=2&&METsig>30)*weight3*%.0f", nomindphicuts, dataIntLumiIPB ) ;
+      printf("\n %s : %s\n", arg1, allcuts ) ; fflush(stdout) ;
+      tt_chain -> Draw( arg1, allcuts ) ;
+      h_deltam_vs_avem_ttbar_nomindphi -> Draw("box") ;
       can->Update() ; can->Draw() ;
 
 

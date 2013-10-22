@@ -463,6 +463,7 @@
       TCanvas* c_metsig = new TCanvas( "c_metsig", "METsig", 700, 500 ) ;
 
       TH1F* h_metsig_sigsb_nobtag_nomindphi_ub = (TH1F*) gDirectory -> FindObject( "h_metsig_sigsb_nobtag_nomindphi_ub" ) ;
+      TH1F* h_metsig_sigsb_nobtag_nomindphi_fb = (TH1F*) gDirectory -> FindObject( "h_metsig_sigsb_nobtag_nomindphi_fb" ) ;
       TH1F* h_metsig_sigsb_nobtag_fb = (TH1F*) gDirectory -> FindObject( "h_metsig_sigsb_nobtag_fb" ) ;
       TH1F* h_metsig_sigsb_2b_fb = (TH1F*) gDirectory -> FindObject( "h_metsig_sigsb_2b_fb" ) ;
       TH1F* h_metsig_sigsb_3b_fb = (TH1F*) gDirectory -> FindObject( "h_metsig_sigsb_3b_fb" ) ;
@@ -473,6 +474,9 @@
       h_metsig_sigsb_nobtag_nomindphi_ub -> SetLineWidth(2) ;
       h_metsig_sigsb_nobtag_nomindphi_ub -> SetLineColor(2) ;
       h_metsig_sigsb_nobtag_nomindphi_ub -> SetXTitle( "METsig" ) ;
+      h_metsig_sigsb_nobtag_nomindphi_fb -> SetLineWidth(2) ;
+      h_metsig_sigsb_nobtag_nomindphi_fb -> SetLineColor(2) ;
+      h_metsig_sigsb_nobtag_nomindphi_fb -> SetXTitle( "METsig" ) ;
       h_metsig_sigsb_nobtag_fb -> SetLineWidth(2) ;
       h_metsig_sigsb_nobtag_fb -> SetLineColor(2) ;
       h_metsig_sigsb_nobtag_fb -> SetXTitle( "METsig" ) ;
@@ -536,6 +540,17 @@
 
       c_metsig -> Update() ; c_metsig -> Draw() ;
       c_metsig -> SaveAs( "outputfiles/h_metsig_sigsb_nobtag_fb-liny.pdf" ) ;
+
+      //-----
+
+      hmax = 1.2 * ( h_metsig_sigsb_nobtag_nomindphi_fb -> GetMaximum() ) ;
+      h_metsig_sigsb_nobtag_nomindphi_fb -> SetMaximum( hmax ) ;
+
+      h_metsig_sigsb_nobtag_nomindphi_fb -> Draw( "hist" ) ;
+      h_metsig_sigsb_nobtag_nomindphi_fb -> Draw( "same" ) ;
+
+      c_metsig -> Update() ; c_metsig -> Draw() ;
+      c_metsig -> SaveAs( "outputfiles/h_metsig_sigsb_nobtag_nomindphi_fb-liny.pdf" ) ;
 
 
       //-----
@@ -601,6 +616,19 @@
 
       //-----
 
+      hmax = 2.0 * ( h_metsig_sigsb_nobtag_nomindphi_fb -> GetMaximum() ) ;
+      h_metsig_sigsb_nobtag_nomindphi_fb -> SetMaximum( hmax ) ;
+      h_metsig_sigsb_nobtag_nomindphi_fb -> SetMinimum( hmin ) ;
+
+      h_metsig_sigsb_nobtag_nomindphi_fb -> Draw( "hist" ) ;
+      h_metsig_sigsb_nobtag_nomindphi_fb -> Draw( "same" ) ;
+
+      c_metsig -> Update() ; c_metsig -> Draw() ;
+      c_metsig -> SaveAs( "outputfiles/h_metsig_sigsb_nobtag_nomindphi_fb-logy.pdf" ) ;
+
+
+      //-----
+
       hmax = 2.0 * ( h_metsig_ttbar_sigsb_allcuts_fb -> GetMaximum() ) ;
       h_metsig_ttbar_sigsb_allcuts_fb -> SetMaximum( hmax ) ;
       h_metsig_ttbar_sigsb_allcuts_fb -> SetMinimum( hmin ) ;
@@ -623,7 +651,9 @@
 
       //------
 
-      h_metsig_sigsb_nobtag_fb -> Scale( (h_metsig_sigsb_2b_fb->Integral())/(h_metsig_sigsb_nobtag_fb->Integral()) ) ;
+      if ( h_metsig_sigsb_2b_fb->Integral() > 0 ) {
+         h_metsig_sigsb_nobtag_fb -> Scale( (h_metsig_sigsb_2b_fb->Integral())/(h_metsig_sigsb_nobtag_fb->Integral()) ) ;
+      }
 
       hmax = 1.2 * ( h_metsig_sigsb_2b_fb->GetMaximum() ) ;
       h_metsig_sigsb_2b_fb -> SetMaximum( hmax ) ;
@@ -638,7 +668,9 @@
 
       //------
 
-      h_metsig_sigsb_nobtag_fb -> Scale( (h_metsig_sigsb_3b_fb->Integral())/(h_metsig_sigsb_nobtag_fb->Integral()) ) ;
+      if ( h_metsig_sigsb_3b_fb->Integral() > 0 ) {
+         h_metsig_sigsb_nobtag_fb -> Scale( (h_metsig_sigsb_3b_fb->Integral())/(h_metsig_sigsb_nobtag_fb->Integral()) ) ;
+      }
 
       hmax = 1.2 * ( h_metsig_sigsb_3b_fb->GetMaximum() ) ;
       h_metsig_sigsb_3b_fb -> SetMaximum( hmax ) ;
@@ -653,7 +685,9 @@
 
       //------
 
-      h_metsig_sigsb_nobtag_fb -> Scale( (h_metsig_sigsb_4b_fb->Integral())/(h_metsig_sigsb_nobtag_fb->Integral()) ) ;
+      if ( h_metsig_sigsb_4b_fb->Integral() > 0 ) {
+         h_metsig_sigsb_nobtag_fb -> Scale( (h_metsig_sigsb_4b_fb->Integral())/(h_metsig_sigsb_nobtag_fb->Integral()) ) ;
+      }
 
       hmax = 1.2 * ( h_metsig_sigsb_4b_fb->GetMaximum() ) ;
       h_metsig_sigsb_4b_fb -> SetMaximum( hmax ) ;
@@ -1022,7 +1056,9 @@
       gStyle -> SetMarkerSize(3.0) ;
       gStyle -> SetPaintTextFormat(".3f") ;
 
-
+      printf("\n\n working on METsig pdf.\n\n") ;
+      printf(" integral of h_metsig_sigsb_nobtag_fb : %.2f\n", h_metsig_sigsb_nobtag_fb->Integral() ) ;
+      h_metsig_sigsb_nobtag_fb->Print("all") ;
       h_metsig_sigsb_nobtag_fb -> Scale( 1.0 / (h_metsig_sigsb_nobtag_fb->Integral()) ) ;
 
       h_metsig_sigsb_nobtag_fb -> SetMaximum(1.1) ;
@@ -1042,6 +1078,42 @@
 
       printf("\n\n QCD METsig PDF:\n" ) ;
       h_metsig_sigsb_nobtag_fb -> Print("all") ;
+
+
+
+
+
+      //====== QCD METsig, nomindphi PDF ----------------------------------------------------------------------------------------
+
+      gPad -> SetGridy(1) ;
+
+      gStyle -> SetMarkerSize(3.0) ;
+      gStyle -> SetPaintTextFormat(".3f") ;
+
+      printf("\n\n working on METsig pdf.\n\n") ;
+      printf(" integral of h_metsig_sigsb_nobtag_nomindphi_fb : %.2f\n", h_metsig_sigsb_nobtag_nomindphi_fb->Integral() ) ;
+      h_metsig_sigsb_nobtag_nomindphi_fb->Print("all") ;
+      h_metsig_sigsb_nobtag_nomindphi_fb -> Scale( 1.0 / (h_metsig_sigsb_nobtag_nomindphi_fb->Integral()) ) ;
+
+      h_metsig_sigsb_nobtag_nomindphi_fb -> SetMaximum(1.1) ;
+      h_metsig_sigsb_nobtag_nomindphi_fb -> SetMinimum(0.0) ;
+
+      h_metsig_sigsb_nobtag_nomindphi_fb -> UseCurrentStyle() ;
+
+      h_metsig_sigsb_nobtag_nomindphi_fb -> SetLineWidth(3) ;
+      h_metsig_sigsb_nobtag_nomindphi_fb -> SetLineColor(2) ;
+
+      h_metsig_sigsb_nobtag_nomindphi_fb -> Draw() ;
+      h_metsig_sigsb_nobtag_nomindphi_fb -> Draw("hist same") ;
+      h_metsig_sigsb_nobtag_nomindphi_fb -> Draw( "text0 same" ) ;
+
+      c_metsigpdf -> Update() ; c_metsigpdf -> Draw() ;
+      c_metsigpdf -> SaveAs( "outputfiles/qcd-metsig-pdf-nomindphi.pdf" ) ;
+
+      printf("\n\n QCD METsig PDF, nomindphi:\n" ) ;
+      h_metsig_sigsb_nobtag_nomindphi_fb -> Print("all") ;
+
+
 
 
 
@@ -1130,6 +1202,461 @@
       c_2dpdf -> Update() ; c_2dpdf -> Draw() ;
       c_2dpdf -> SaveAs( "outputfiles/qcd-2d-pdf.pdf" ) ;
 
+
+
+      //====== QCD 2D Nb vs METsig PDF, nomindphi ----------------------------------------------------------------------------------------
+
+      TCanvas* c_2dpdf_nomindphi = new TCanvas( "c_2dpdf_nomindphi", "2D Nb vs METsig pdf, no minDeltaPhi", 700, 500 ) ;
+
+      TH2F* h_qcd_2d_nb_vs_metsig_nomindphi_pdf = new TH2F( "h_qcd_2d_nb_vs_metsig_nomindphi_pdf", "QCD 2D Nb vs METsig PDF, no minDeltaPhi",  4, 0.5, 4.5,  3, 0.5, 3.5 ) ;
+
+      printf("\n\n QCD 2D Nb vs METsig PDF, no minDeltaPhi: \n" ) ;
+
+      for ( int msbi=1; msbi<=4; msbi++ ) {
+
+         double p_metsig_val = h_metsig_sigsb_nobtag_nomindphi_fb -> GetBinContent( msbi ) ;
+         double p_metsig_err = h_metsig_sigsb_nobtag_nomindphi_fb -> GetBinError( msbi ) ;
+
+         char blabel[10] ;
+         sprintf( blabel, "S bin %d", msbi ) ;
+         h_qcd_2d_nb_vs_metsig_nomindphi_pdf -> GetXaxis() -> SetBinLabel( msbi, blabel ) ;
+
+         for ( int nbi=1; nbi<=3; nbi++ ) {
+
+            double p_nb_val = h_nb_sigsb_nometsig_nomindphi -> GetBinContent( 6-nbi ) ;
+            double p_nb_err = h_nb_sigsb_nometsig_nomindphi -> GetBinError( 6-nbi ) ;
+
+            double p_2d_val = p_metsig_val * p_nb_val ;
+            double p_2d_err = 0. ;
+            if ( p_nb_val > 0 && p_metsig_val > 0 ) {
+               p_2d_err = p_2d_val * sqrt( pow( p_metsig_err / p_metsig_val, 2 ) + pow( p_2d_err / p_2d_val, 2 ) ) ;
+            }
+            printf("   METsig %d, Nb %d :  (%.3f +/- %.3f) * (%.3f +/- %.3f)  =  (%.4f +/- %.4f)\n", msbi, 5-nbi,
+                   p_metsig_val, p_metsig_err, p_nb_val, p_nb_err, p_2d_val, p_2d_err ) ;
+
+            h_qcd_2d_nb_vs_metsig_nomindphi_pdf -> SetBinContent( msbi, nbi, p_2d_val ) ;
+            h_qcd_2d_nb_vs_metsig_nomindphi_pdf -> SetBinError( msbi, nbi, p_2d_err ) ;
+
+            sprintf( blabel, "Nb %d", 5-nbi ) ;
+            h_qcd_2d_nb_vs_metsig_nomindphi_pdf -> GetYaxis() -> SetBinLabel( nbi, blabel ) ;
+
+         } // nbi
+      } // msbi
+
+      h_qcd_2d_nb_vs_metsig_nomindphi_pdf -> SetFillColor( kRed-10 ) ;
+      gStyle -> SetPaintTextFormat(".4f") ;
+      h_qcd_2d_nb_vs_metsig_nomindphi_pdf -> SetLabelSize( 0.070, "x" ) ;
+      h_qcd_2d_nb_vs_metsig_nomindphi_pdf -> SetLabelSize( 0.070, "y" ) ;
+
+      h_qcd_2d_nb_vs_metsig_nomindphi_pdf -> Draw( "box" ) ;
+      h_qcd_2d_nb_vs_metsig_nomindphi_pdf -> Draw( "texte same" ) ;
+
+      c_2dpdf_nomindphi -> Update() ; c_2dpdf_nomindphi -> Draw() ;
+      c_2dpdf_nomindphi -> SaveAs( "outputfiles/qcd-2d-pdf-nomindphi.pdf" ) ;
+
+
+
+
+
+      //====== ttbar 2D Nb vs METsig events ----------------------------------------------------------------------------------------
+
+      TCanvas* c_tt2devents = new TCanvas( "c_tt2devents", "ttbar, 2D Nb vs METsig events", 700, 500 ) ;
+
+      gStyle -> SetPaintTextFormat(".1f") ;
+
+      TH2F* h_nb_vs_metsig_ttbar = (TH2F*) gDirectory -> FindObject( "h_nb_vs_metsig_ttbar" ) ;
+      h_nb_vs_metsig_ttbar -> UseCurrentStyle() ;
+      h_nb_vs_metsig_ttbar -> SetFillColor( kBlue - 10 ) ;
+      h_nb_vs_metsig_ttbar -> SetLabelSize( 0.070, "x" ) ;
+      h_nb_vs_metsig_ttbar -> SetLabelSize( 0.070, "y" ) ;
+
+      h_nb_vs_metsig_ttbar -> Draw( "box" ) ;
+      h_nb_vs_metsig_ttbar -> Draw( "texte same" ) ;
+
+      c_tt2devents -> Update() ; c_tt2devents -> Draw() ;
+      c_tt2devents -> SaveAs( "outputfiles/ttbar-2d-events.pdf" ) ;
+
+
+      //====== ttbar 2D Nb vs METsig, nomindphi, events ----------------------------------------------------------------------------------------
+
+      gStyle -> SetPaintTextFormat(".1f") ;
+
+      TH2F* h_nb_vs_metsig_ttbar_nomindphi = (TH2F*) gDirectory -> FindObject( "h_nb_vs_metsig_ttbar_nomindphi" ) ;
+      h_nb_vs_metsig_ttbar_nomindphi -> UseCurrentStyle() ;
+      h_nb_vs_metsig_ttbar_nomindphi -> SetFillColor( kBlue - 10 ) ;
+      h_nb_vs_metsig_ttbar_nomindphi -> SetLabelSize( 0.070, "x" ) ;
+      h_nb_vs_metsig_ttbar_nomindphi -> SetLabelSize( 0.070, "y" ) ;
+
+      h_nb_vs_metsig_ttbar_nomindphi -> Draw( "box" ) ;
+      h_nb_vs_metsig_ttbar_nomindphi -> Draw( "texte same" ) ;
+
+      c_tt2devents -> Update() ; c_tt2devents -> Draw() ;
+      c_tt2devents -> SaveAs( "outputfiles/ttbar-2d-events-nomindphi.pdf" ) ;
+
+
+      //====== ttbar 2D Nb vs METsig PDF ----------------------------------------------------------------------------------------
+
+      TCanvas* c_tt2dpdf = new TCanvas( "c_tt2dpdf", "ttbar, 2D Nb vs METsig pdf", 700, 500 ) ;
+
+      TH2F* h_nb_vs_metsig_ttbar_pdf = (TH2F*) h_nb_vs_metsig_ttbar -> Clone( "h_nb_vs_metsig_ttbar_pdf" ) ;
+
+      gStyle -> SetPaintTextFormat(".4f") ;
+
+      h_nb_vs_metsig_ttbar_pdf -> Scale( 1./(h_nb_vs_metsig_ttbar_pdf->Integral()) ) ;
+
+      h_nb_vs_metsig_ttbar_pdf -> Draw( "box" ) ;
+      h_nb_vs_metsig_ttbar_pdf -> Draw( "texte same" ) ;
+
+      c_tt2dpdf -> Update() ; c_tt2dpdf -> Draw() ;
+      c_tt2dpdf -> SaveAs( "outputfiles/ttbar-2d-pdf.pdf" ) ;
+
+
+      //====== ttbar 2D Nb vs METsig, nomindphi PDF ----------------------------------------------------------------------------------------
+
+      TH2F* h_nb_vs_metsig_ttbar_nomindphi_pdf = (TH2F*) h_nb_vs_metsig_ttbar_nomindphi -> Clone( "h_nb_vs_metsig_ttbar_nomindphi_pdf" ) ;
+
+      gStyle -> SetPaintTextFormat(".4f") ;
+
+      h_nb_vs_metsig_ttbar_nomindphi_pdf -> Scale( 1./(h_nb_vs_metsig_ttbar_nomindphi_pdf->Integral()) ) ;
+
+      h_nb_vs_metsig_ttbar_nomindphi_pdf -> Draw( "box" ) ;
+      h_nb_vs_metsig_ttbar_nomindphi_pdf -> Draw( "texte same" ) ;
+
+      c_tt2dpdf -> Update() ; c_tt2dpdf -> Draw() ;
+      c_tt2dpdf -> SaveAs( "outputfiles/ttbar-2d-pdf-nomindphi.pdf" ) ;
+
+
+      //====== QCD 2D Nb vs METsig events ----------------------------------------------------------------------------------------
+
+      TCanvas* c_qcd2devts = new TCanvas( "c_qcd2devts", "QCD, 2D Nb vs METsig events", 700, 500 ) ;
+
+      gStyle -> SetPaintTextFormat(".1f") ;
+
+      TH2F* h_nb_vs_metsig_qcd = (TH2F*) gDirectory -> FindObject( "h_nb_vs_metsig_qcd" ) ;
+      h_nb_vs_metsig_qcd -> UseCurrentStyle() ;
+      h_nb_vs_metsig_qcd -> SetFillColor( kRed - 10 ) ;
+      h_nb_vs_metsig_qcd -> SetLabelSize( 0.070, "x" ) ;
+      h_nb_vs_metsig_qcd -> SetLabelSize( 0.070, "y" ) ;
+
+      h_nb_vs_metsig_qcd -> Draw( "box" ) ;
+      h_nb_vs_metsig_qcd -> Draw( "texte same" ) ;
+
+      c_qcd2devts -> Update() ; c_qcd2devts -> Draw() ;
+      c_qcd2devts -> SaveAs( "outputfiles/qcd-2d-events.pdf" ) ;
+
+
+      //====== QCD 2D Nb vs METsig, nomindphi, events ----------------------------------------------------------------------------------------
+
+      gStyle -> SetPaintTextFormat(".1f") ;
+
+      TH2F* h_nb_vs_metsig_qcd_nomindphi = (TH2F*) gDirectory -> FindObject( "h_nb_vs_metsig_qcd_nomindphi" ) ;
+      h_nb_vs_metsig_qcd_nomindphi -> UseCurrentStyle() ;
+      h_nb_vs_metsig_qcd_nomindphi -> SetFillColor( kRed - 10 ) ;
+      h_nb_vs_metsig_qcd_nomindphi -> SetLabelSize( 0.070, "x" ) ;
+      h_nb_vs_metsig_qcd_nomindphi -> SetLabelSize( 0.070, "y" ) ;
+
+      h_nb_vs_metsig_qcd_nomindphi -> Draw( "box" ) ;
+      h_nb_vs_metsig_qcd_nomindphi -> Draw( "texte same" ) ;
+
+      c_qcd2devts -> Update() ; c_qcd2devts -> Draw() ;
+      c_qcd2devts -> SaveAs( "outputfiles/qcd-2d-events-nomindphi.pdf" ) ;
+
+
+      //====== QCD 2D Nb vs METsig, nomindphi, x1.3, events ----------------------------------------------------------------------------------------
+
+      TH2F* h_nb_vs_metsig_qcd_nomindphi_x13 = (TH2F*) h_nb_vs_metsig_qcd_nomindphi -> Clone( "h_nb_vs_metsig_qcd_nomindphi_x13" ) ;
+      h_nb_vs_metsig_qcd_nomindphi_x13 -> SetTitle( "QCD Nb vs METsig bin, no minDeltaPhi, x1.3, events" ) ;
+      h_nb_vs_metsig_qcd_nomindphi_x13 -> Scale( 1.3 ) ;
+
+      h_nb_vs_metsig_qcd_nomindphi_x13 -> Draw( "box" ) ;
+      h_nb_vs_metsig_qcd_nomindphi_x13 -> Draw( "texte same" ) ;
+
+      c_qcd2devts -> Update() ; c_qcd2devts -> Draw() ;
+      c_qcd2devts -> SaveAs( "outputfiles/qcd-2d-events-x13-nomindphi.pdf" ) ;
+
+
+
+      //====== QCD 2D Nb vs METsig events, model prediction ----------------------------------------------------------------------------------------
+
+      TCanvas* c_qcd2devts_mp = new TCanvas( "c_qcd2devts_mp", "QCD, 2D Nb vs METsig events, model", 700, 500 ) ;
+
+      TH2F* h_qcd_2d_nb_vs_metsig_events_model = (TH2F*) h_qcd_2d_nb_vs_metsig_pdf -> Clone( "h_qcd_2d_nb_vs_metsig_events_model" ) ;
+
+      h_qcd_2d_nb_vs_metsig_events_model -> Scale( (h_nb_vs_metsig_qcd->GetBinContent(1,3))/(h_qcd_2d_nb_vs_metsig_pdf->GetBinContent(1,3)) ) ;
+
+      h_qcd_2d_nb_vs_metsig_events_model -> Draw( "box" ) ;
+      h_qcd_2d_nb_vs_metsig_events_model -> Draw( "texte same" ) ;
+
+      c_qcd2devts_mp -> Update() ; c_qcd2devts_mp -> Draw() ;
+      c_qcd2devts_mp -> SaveAs( "outputfiles/qcd-2d-events-model.pdf" ) ;
+
+
+
+      //====== QCD 2D Nb vs METsig events, nomindphi, model prediction ----------------------------------------------------------------------------------------
+
+      TCanvas* c_qcd2devts_mp_nomindphi = new TCanvas( "c_qcd2devts_mp_nomindphi", "QCD, 2D Nb vs METsig events, no minDeltaPhi, model", 700, 500 ) ;
+
+      TH2F* h_qcd_2d_nb_vs_metsig_nomindphi_events_model = (TH2F*) h_qcd_2d_nb_vs_metsig_nomindphi_pdf -> Clone( "h_qcd_2d_nb_vs_metsig_nomindphi_events_model" ) ;
+
+      h_qcd_2d_nb_vs_metsig_nomindphi_events_model -> Scale( (h_nb_vs_metsig_qcd_nomindphi->GetBinContent(1,3))/(h_qcd_2d_nb_vs_metsig_nomindphi_pdf->GetBinContent(1,3)) ) ;
+
+      h_qcd_2d_nb_vs_metsig_nomindphi_events_model -> Draw( "box" ) ;
+      h_qcd_2d_nb_vs_metsig_nomindphi_events_model -> Draw( "texte same" ) ;
+
+      c_qcd2devts_mp_nomindphi -> Update() ; c_qcd2devts_mp_nomindphi -> Draw() ;
+      c_qcd2devts_mp_nomindphi -> SaveAs( "outputfiles/qcd-2d-events-model-nomindphi.pdf" ) ;
+
+
+      //====== QCD 2D Nb vs METsig events, nomindphi, x1.3, model prediction ----------------------------------------------------------------------------------------
+
+      TCanvas* c_qcd2devts_mp_nomindphi_x13 = new TCanvas( "c_qcd2devts_mp_nomindphi_x13", "QCD, 2D Nb vs METsig events, no minDeltaPhi, x1.3, model", 700, 500 ) ;
+
+      TH2F* h_qcd_2d_nb_vs_metsig_nomindphi_x13_events_model = (TH2F*) h_qcd_2d_nb_vs_metsig_nomindphi_pdf -> Clone( "h_qcd_2d_nb_vs_metsig_nomindphi_events_model" ) ;
+
+      h_qcd_2d_nb_vs_metsig_nomindphi_x13_events_model -> Scale( 1.3 * (h_nb_vs_metsig_qcd_nomindphi->GetBinContent(1,3))/(h_qcd_2d_nb_vs_metsig_nomindphi_pdf->GetBinContent(1,3)) ) ;
+
+      h_qcd_2d_nb_vs_metsig_nomindphi_x13_events_model -> Draw( "box" ) ;
+      h_qcd_2d_nb_vs_metsig_nomindphi_x13_events_model -> Draw( "texte same" ) ;
+
+      c_qcd2devts_mp_nomindphi_x13 -> Update() ; c_qcd2devts_mp_nomindphi_x13 -> Draw() ;
+      c_qcd2devts_mp_nomindphi_x13 -> SaveAs( "outputfiles/qcd-2d-events-model-nomindphi-x13.pdf" ) ;
+
+
+
+
+      //====== QCD fraction, model prediction ----------------------------------------------------------------------------------------
+
+      TCanvas* c_qcdfrac = new TCanvas( "c_qcdfrac", "QCD fraction", 700, 500 ) ;
+
+      gStyle -> SetPaintTextFormat(".3f") ;
+
+      TH2F* h_qcd_2d_nb_vs_metsig_fraction_mc = (TH2F*) h_qcd_2d_nb_vs_metsig_events_model -> Clone( "h_qcd_2d_nb_vs_metsig_fraction_mc" ) ;
+      h_qcd_2d_nb_vs_metsig_fraction_mc -> SetTitle( "QCD fraction" ) ;
+
+      for ( int msbi=1; msbi<=4; msbi++ ) {
+         for ( int nbi=1; nbi<=3; nbi++ ) {
+            double qcd_val = h_qcd_2d_nb_vs_metsig_events_model -> GetBinContent( msbi, nbi ) ;
+            double qcd_err = h_qcd_2d_nb_vs_metsig_events_model -> GetBinError( msbi, nbi ) ;
+            double ttbar_val =  h_nb_vs_metsig_ttbar -> GetBinContent( msbi, nbi ) ;
+            double ttbar_err =  h_nb_vs_metsig_ttbar -> GetBinError( msbi, nbi ) ;
+            double sum = qcd_val + ttbar_val ;
+            double frac_val(0.)  ;
+            double frac_err(0.) ;
+            if ( sum > 0 ) {
+               frac_val = qcd_val / sum ;
+               frac_err = pow( 1./sum, 2 ) * sqrt( pow( qcd_val * ttbar_err, 2 ) + pow( ttbar_val * qcd_err, 2 ) ) ;
+            }
+            h_qcd_2d_nb_vs_metsig_fraction_mc -> SetBinContent( msbi, nbi, frac_val ) ;
+            h_qcd_2d_nb_vs_metsig_fraction_mc -> SetBinError( msbi, nbi, frac_err ) ;
+         } // nbi.
+      } // msbi
+
+      h_qcd_2d_nb_vs_metsig_fraction_mc -> Draw( "box" ) ;
+      h_qcd_2d_nb_vs_metsig_fraction_mc -> Draw( "texte same" ) ;
+
+      c_qcdfrac -> Update() ; c_qcdfrac -> Draw() ;
+      c_qcdfrac -> SaveAs( "outputfiles/h_qcd_2d_nb_vs_metsig_fraction_mc.pdf" ) ;
+
+
+      //====== QCD fraction, model prediction ----------------------------------------------------------------------------------------
+
+      TCanvas* c_qcdfrac_qcdx2 = new TCanvas( "c_qcdfrac_qcdx2", "QCD fraction, QCD x 2", 700, 500 ) ;
+
+      gStyle -> SetPaintTextFormat(".3f") ;
+
+      TH2F* h_qcd_2d_nb_vs_metsig_fraction_mc_qcdx2 = (TH2F*) h_qcd_2d_nb_vs_metsig_events_model -> Clone( "h_qcd_2d_nb_vs_metsig_fraction_mc_qcdx2" ) ;
+      h_qcd_2d_nb_vs_metsig_fraction_mc_qcdx2 -> SetTitle( "QCD fraction, QCD x 2" ) ;
+
+      for ( int msbi=1; msbi<=4; msbi++ ) {
+         for ( int nbi=1; nbi<=3; nbi++ ) {
+            double qcd_val = 2. * ( h_qcd_2d_nb_vs_metsig_events_model -> GetBinContent( msbi, nbi ) ) ;
+            double qcd_err = 2. * ( h_qcd_2d_nb_vs_metsig_events_model -> GetBinError( msbi, nbi ) ) ;
+            double ttbar_val =  h_nb_vs_metsig_ttbar -> GetBinContent( msbi, nbi ) ;
+            double ttbar_err =  h_nb_vs_metsig_ttbar -> GetBinError( msbi, nbi ) ;
+            double sum = qcd_val + ttbar_val ;
+            double frac_val(0.)  ;
+            double frac_err(0.) ;
+            if ( sum > 0 ) {
+               frac_val = qcd_val / sum ;
+               frac_err = pow( 1./sum, 2 ) * sqrt( pow( qcd_val * ttbar_err, 2 ) + pow( ttbar_val * qcd_err, 2 ) ) ;
+            }
+            h_qcd_2d_nb_vs_metsig_fraction_mc_qcdx2 -> SetBinContent( msbi, nbi, frac_val ) ;
+            h_qcd_2d_nb_vs_metsig_fraction_mc_qcdx2 -> SetBinError( msbi, nbi, frac_err ) ;
+         } // nbi.
+      } // msbi
+
+      h_qcd_2d_nb_vs_metsig_fraction_mc_qcdx2 -> Draw( "box" ) ;
+      h_qcd_2d_nb_vs_metsig_fraction_mc_qcdx2 -> Draw( "texte same" ) ;
+
+      c_qcdfrac_qcdx2 -> Update() ; c_qcdfrac_qcdx2 -> Draw() ;
+      c_qcdfrac_qcdx2 -> SaveAs( "outputfiles/h_qcd_2d_nb_vs_metsig_fraction_mc_qcdx2.pdf" ) ;
+
+
+
+      //====== compute sample SIG and SB fractions ----------------------------------------------------------------------------------------
+
+      double qcd_total     = h_deltam_vs_avem_nometsig_nobtag_nomindphi -> Integral() ;
+      double qcd_sig       = h_deltam_vs_avem_nometsig_nobtag_nomindphi -> Integral( 11,14, 1,2 ) ;
+      double qcd_sig_buf   = h_deltam_vs_avem_nometsig_nobtag_nomindphi -> Integral( 10,15, 1,3 ) ;
+
+      double f_qcd_sig = qcd_sig / qcd_total ;
+      double f_qcd_sb  = (qcd_total - qcd_sig_buf) / qcd_total ;
+
+      double ttbar_total     = h_deltam_vs_avem_ttbar_allcuts -> Integral() ;
+      double ttbar_sig       = h_deltam_vs_avem_ttbar_allcuts -> Integral( 11,14, 1,2 ) ;
+      double ttbar_sig_buf   = h_deltam_vs_avem_ttbar_allcuts -> Integral( 10,15, 1,3 ) ;
+
+      double f_ttbar_sig = ttbar_sig / ttbar_total ;
+      double f_ttbar_sb  = (ttbar_total - ttbar_sig_buf) / ttbar_total ;
+
+      printf(" \n\n QCD   fractions:  f_sig = %.3f ,  f_sb = %.3f ,  SIG/SB = %.3f \n", f_qcd_sig, f_qcd_sb, f_qcd_sig / f_qcd_sb ) ;
+      printf(" \n\n ttbar fractions:  f_sig = %.3f ,  f_sb = %.3f ,  SIG/SB = %.3f \n", f_ttbar_sig, f_ttbar_sb, f_ttbar_sig / f_ttbar_sb ) ;
+      printf("\n\n") ;
+
+
+      //====== Fill SIG and SB histograms for QCD and ttbar ----------------------------------------------------------------------------------------
+
+      TH2F* h_qcd = (TH2F*) h_qcd_2d_nb_vs_metsig_events_model -> Clone( "h_qcd" ) ;
+      h_qcd -> SetTitle( "QCD, all" ) ;
+
+      TH2F* h_qcd_sb = (TH2F*) h_qcd -> Clone( "h_qcd_sb" ) ;
+      h_qcd_sb -> SetTitle( "QCD, SB" ) ;
+      h_qcd_sb -> Scale( f_qcd_sb ) ;
+
+      TH2F* h_qcd_sig = (TH2F*) h_qcd -> Clone( "h_qcd_sig" ) ;
+      h_qcd_sig -> SetTitle( "QCD, SIG" ) ;
+      h_qcd_sig -> Scale( f_qcd_sig ) ;
+
+
+      TH2F* h_ttbar = (TH2F*) h_nb_vs_metsig_ttbar -> Clone( "h_ttbar" ) ;
+      h_ttbar -> SetTitle( "ttbar, all" ) ;
+
+      TH2F* h_ttbar_sb = (TH2F*) h_ttbar -> Clone( "h_ttbar_sb" ) ;
+      h_ttbar_sb -> SetTitle( "ttbar, SB" ) ;
+      h_ttbar_sb -> Scale( f_ttbar_sb ) ;
+
+      TH2F* h_ttbar_sig = (TH2F*) h_ttbar -> Clone( "h_ttbar_sig" ) ;
+      h_ttbar_sig -> SetTitle( "ttbar, SIG" ) ;
+      h_ttbar_sig -> Scale( f_ttbar_sig ) ;
+
+
+      //====== Fill SIG and SB histograms for sum of QCD and ttbar, nominal ----------------------------------------------------------------------------------------
+
+      TH2F* h_sb = (TH2F*) h_qcd_sb -> Clone( "h_sb" ) ;
+      h_sb -> SetTitle("Sum (QCD+ttbar), SB") ;
+      h_sb -> Reset() ;
+      h_sb -> Sumw2() ;
+      h_sb -> Add( h_qcd_sb ) ;
+      h_sb -> Add( h_ttbar_sb ) ;
+
+      TH2F* h_sig = (TH2F*) h_qcd_sig -> Clone( "h_sig" ) ;
+      h_sig -> SetTitle("Sum (QCD+ttbar), SIG") ;
+      h_sig -> Reset() ;
+      h_sig -> Sumw2() ;
+      h_sig -> Add( h_qcd_sig ) ;
+      h_sig -> Add( h_ttbar_sig ) ;
+
+      //====== Fill SIG/SB ratio histogram, nominal ----------------------------------------------------------------------------------------
+
+      gStyle -> SetPaintTextFormat(".4f") ;
+
+      TH2F* h_sigsb_ratio = (TH2F*) h_sig -> Clone( "h_sigsb_ratio" ) ;
+      h_sigsb_ratio -> SetTitle( "SIG/SB ratio" ) ;
+      h_sigsb_ratio -> Divide( h_sb ) ;
+
+      TCanvas* c_ratio = new TCanvas("c_ratio", "SIG/SB ratio", 700, 500 ) ;
+
+      h_sigsb_ratio -> Draw("text" ) ;
+
+      c_ratio -> Update() ; c_ratio -> Draw() ;
+      c_ratio -> SaveAs( "outputfiles/h_sigsb_ratio.pdf" ) ;
+
+
+
+      //====== Scale up QCD by x 2: Fill SIG and SB histograms for sum of QCD and ttbar ----------------------------------------------------------------------------------------
+
+      TH2F* h_sb_qcdx2 = (TH2F*) h_qcd_sb -> Clone( "h_sb_qcdx2" ) ;
+      h_sb_qcdx2 -> SetTitle("Sum (QCDx2+ttbar), SB") ;
+      h_sb_qcdx2 -> Reset() ;
+      h_sb_qcdx2 -> Sumw2() ;
+      h_sb_qcdx2 -> Add( h_qcd_sb ) ;
+      h_sb_qcdx2 -> Scale( 2.0 ) ;
+      h_sb_qcdx2 -> Add( h_ttbar_sb ) ;
+
+      TH2F* h_sig_qcdx2 = (TH2F*) h_qcd_sig -> Clone( "h_sig_qcdx2" ) ;
+      h_sig_qcdx2 -> SetTitle("Sum (QCDx2+ttbar), SIG") ;
+      h_sig_qcdx2 -> Reset() ;
+      h_sig_qcdx2 -> Sumw2() ;
+      h_sig_qcdx2 -> Add( h_qcd_sig ) ;
+      h_sig_qcdx2 -> Scale( 2.0 ) ;
+      h_sig_qcdx2 -> Add( h_ttbar_sig ) ;
+
+      //====== Scale up QCD by x 2 : Fill SIG/SB ratio histogram ----------------------------------------------------------------------------------------
+
+      gStyle -> SetPaintTextFormat(".4f") ;
+
+      TH2F* h_sigsb_ratio_qcdx2 = (TH2F*) h_sig_qcdx2 -> Clone( "h_sigsb_ratio_qcdx2" ) ;
+      h_sigsb_ratio_qcdx2 -> SetTitle( "SIG/SB ratio, QCD x 2" ) ;
+      h_sigsb_ratio_qcdx2 -> Divide( h_sb_qcdx2 ) ;
+
+      TCanvas* c_ratio_qcdx2 = new TCanvas("c_ratio_qcdx2", "SIG/SB ratio, QCDx2", 700, 500 ) ;
+
+      h_sigsb_ratio_qcdx2 -> Draw("text" ) ;
+
+      c_ratio_qcdx2 -> Update() ; c_ratio_qcdx2 -> Draw() ;
+      c_ratio_qcdx2 -> SaveAs( "outputfiles/h_sigsb_ratio_qcdx2.pdf" ) ;
+
+
+
+      //====== Ratio of ratios: R(4b)/R(2b) and R(3b)/R(2b), nominal ----------------------------------------------------------------------------------------
+
+      TH2F* h_ratio_of_ratios = (TH2F*) h_sigsb_ratio -> Clone( "h_ratio_of_ratios" ) ;
+      h_ratio_of_ratios -> SetTitle( "Ratio of ratios:  (SIG/SB nb) / (SIG/SB 2b)" ) ;
+
+      for ( int msbi=1; msbi<=4; msbi++ ) {
+         double ratio_2b = h_sigsb_ratio -> GetBinContent( msbi, 3 ) ;
+         for ( int nbi=1; nbi<=3; nbi++ ) {
+            double ratio_nb = h_sigsb_ratio -> GetBinContent( msbi, nbi ) ;
+            double ratio_of_ratios(0.) ;
+            if ( ratio_2b > 0. ) { ratio_of_ratios = ratio_nb / ratio_2b ; }
+            h_ratio_of_ratios -> SetBinContent( msbi, nbi, ratio_of_ratios ) ;
+            h_ratio_of_ratios -> SetBinError( msbi, nbi, 0. ) ;
+         } // nbi
+      } // msbi
+
+      TCanvas* c_rofr = new TCanvas("c_rofr", "Ratio of SIG/SB ratios", 700, 500 ) ;
+
+      gStyle -> SetPaintTextFormat(".3f") ;
+      h_ratio_of_ratios -> Draw( "text" ) ;
+
+      c_rofr -> Update() ; c_rofr -> Draw() ;
+      c_rofr -> SaveAs( "outputfiles/h_ratio_of_ratios.pdf" ) ;
+
+
+
+      //====== Ratio of ratios: R(4b)/R(2b) and R(3b)/R(2b), QCD x 2 ----------------------------------------------------------------------------------------
+
+      TH2F* h_ratio_of_ratios_qcdx2 = (TH2F*) h_sigsb_ratio_qcdx2 -> Clone( "h_ratio_of_ratios_qcdx2" ) ;
+      h_ratio_of_ratios_qcdx2 -> SetTitle( "Ratio of ratios:  (SIG/SB nb) / (SIG/SB 2b),  QCD x 2" ) ;
+
+      for ( int msbi=1; msbi<=4; msbi++ ) {
+         double ratio_2b = h_sigsb_ratio_qcdx2 -> GetBinContent( msbi, 3 ) ;
+         for ( int nbi=1; nbi<=3; nbi++ ) {
+            double ratio_nb = h_sigsb_ratio_qcdx2 -> GetBinContent( msbi, nbi ) ;
+            double ratio_of_ratios(0.) ;
+            if ( ratio_2b > 0. ) { ratio_of_ratios = ratio_nb / ratio_2b ; }
+            h_ratio_of_ratios_qcdx2 -> SetBinContent( msbi, nbi, ratio_of_ratios ) ;
+            h_ratio_of_ratios_qcdx2 -> SetBinError( msbi, nbi, 0. ) ;
+         } // nbi
+      } // msbi
+
+      TCanvas* c_rofr_qcdx2 = new TCanvas("c_rofr_qcdx2", "Ratio of SIG/SB ratios, QCD x 2", 700, 500 ) ;
+
+      gStyle -> SetPaintTextFormat(".3f") ;
+      h_ratio_of_ratios_qcdx2 -> Draw( "text" ) ;
+
+      c_rofr_qcdx2 -> Update() ; c_rofr_qcdx2 -> Draw() ;
+      c_rofr_qcdx2 -> SaveAs( "outputfiles/h_ratio_of_ratios_qcdx2.pdf" ) ;
 
 
    } // draw_qcdstudy1
