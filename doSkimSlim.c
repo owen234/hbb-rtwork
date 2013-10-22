@@ -73,6 +73,23 @@
          inReducedTree -> SetBranchStatus("CSVbest3",1) ;
          inReducedTree -> SetBranchStatus("CSVbest4",1) ;
 
+         inReducedTree -> SetBranchStatus("nbtag0_rawMC",1) ;
+         inReducedTree -> SetBranchStatus("nbtag2_rawMC",1) ;
+         inReducedTree -> SetBranchStatus("nbtag3_rawMC",1) ;
+         inReducedTree -> SetBranchStatus("nbtag4_rawMC",1) ;
+         inReducedTree -> SetBranchStatus("nbtag0_nomSF",1) ;
+         inReducedTree -> SetBranchStatus("nbtag2_nomSF",1) ;
+         inReducedTree -> SetBranchStatus("nbtag3_nomSF",1) ;
+         inReducedTree -> SetBranchStatus("nbtag4_nomSF",1) ;
+         inReducedTree -> SetBranchStatus("nbtag0_SFp1sig",1) ;
+         inReducedTree -> SetBranchStatus("nbtag2_SFp1sig",1) ;
+         inReducedTree -> SetBranchStatus("nbtag3_SFp1sig",1) ;
+         inReducedTree -> SetBranchStatus("nbtag4_SFp1sig",1) ;
+         inReducedTree -> SetBranchStatus("nbtag0_SFm1sig",1) ;
+         inReducedTree -> SetBranchStatus("nbtag2_SFm1sig",1) ;
+         inReducedTree -> SetBranchStatus("nbtag3_SFm1sig",1) ;
+         inReducedTree -> SetBranchStatus("nbtag4_SFm1sig",1) ;
+
         //--- Essential Higgs vars
          inReducedTree -> SetBranchStatus("higgsMbb1MassDiff",1) ;
          inReducedTree -> SetBranchStatus("higgsMbb2MassDiff",1) ;
@@ -159,6 +176,27 @@
       inReducedTree -> SetBranchAddress("CSVbest3", &CSVbest3) ;
       inReducedTree -> SetBranchAddress("CSVbest4", &CSVbest4) ;
 
+      int nbtag0_rawMC, nbtag2_rawMC, nbtag3_rawMC, nbtag4_rawMC ;
+      int nbtag0_nomSF, nbtag2_nomSF, nbtag3_nomSF, nbtag4_nomSF ;
+      int nbtag0_SFp1sig, nbtag2_SFp1sig, nbtag3_SFp1sig, nbtag4_SFp1sig ;
+      int nbtag0_SFm1sig, nbtag2_SFm1sig, nbtag3_SFm1sig, nbtag4_SFm1sig ;
+      inReducedTree -> SetBranchAddress("nbtag0_rawMC", &nbtag0_rawMC ) ;
+      inReducedTree -> SetBranchAddress("nbtag2_rawMC", &nbtag2_rawMC ) ;
+      inReducedTree -> SetBranchAddress("nbtag3_rawMC", &nbtag3_rawMC ) ;
+      inReducedTree -> SetBranchAddress("nbtag4_rawMC", &nbtag4_rawMC ) ;
+      inReducedTree -> SetBranchAddress("nbtag0_nomSF", &nbtag0_nomSF ) ;
+      inReducedTree -> SetBranchAddress("nbtag2_nomSF", &nbtag2_nomSF ) ;
+      inReducedTree -> SetBranchAddress("nbtag3_nomSF", &nbtag3_nomSF ) ;
+      inReducedTree -> SetBranchAddress("nbtag4_nomSF", &nbtag4_nomSF ) ;
+      inReducedTree -> SetBranchAddress("nbtag0_SFp1sig", &nbtag0_SFp1sig ) ;
+      inReducedTree -> SetBranchAddress("nbtag2_SFp1sig", &nbtag2_SFp1sig ) ;
+      inReducedTree -> SetBranchAddress("nbtag3_SFp1sig", &nbtag3_SFp1sig ) ;
+      inReducedTree -> SetBranchAddress("nbtag4_SFp1sig", &nbtag4_SFp1sig ) ;
+      inReducedTree -> SetBranchAddress("nbtag0_SFm1sig", &nbtag0_SFm1sig ) ;
+      inReducedTree -> SetBranchAddress("nbtag2_SFm1sig", &nbtag2_SFm1sig ) ;
+      inReducedTree -> SetBranchAddress("nbtag3_SFm1sig", &nbtag3_SFm1sig ) ;
+      inReducedTree -> SetBranchAddress("nbtag4_SFm1sig", &nbtag4_SFm1sig ) ;
+
       bool cutPV, passCleaning, buggyEvent ;
       inReducedTree -> SetBranchAddress("cutPV", &cutPV ) ;
       inReducedTree -> SetBranchAddress("passCleaning", &passCleaning ) ;
@@ -233,6 +271,17 @@
       int metsig_bin(0) ;
       outReducedTree -> Branch( "metsig_bin", &metsig_bin, "metsig_bin/I" ) ;
 
+      int nbtag_rawMC(0) ;
+      outReducedTree -> Branch( "nbtag_rawMC", &nbtag_rawMC, "nbtag_rawMC/I" ) ;
+
+      int nbtag_nomSF(0) ;
+      outReducedTree -> Branch( "nbtag_nomSF", &nbtag_nomSF, "nbtag_nomSF/I" ) ;
+
+      int nbtag_SFp1sig(0) ;
+      outReducedTree -> Branch( "nbtag_SFp1sig", &nbtag_SFp1sig, "nbtag_SFp1sig/I" ) ;
+
+      int nbtag_SFm1sig(0) ;
+      outReducedTree -> Branch( "nbtag_SFm1sig", &nbtag_SFm1sig, "nbtag_SFm1sig/I" ) ;
 
 
 
@@ -282,7 +331,7 @@
             //---
             if ( njets20<4 || njets20>5 ) continue ;
             //-----------
-            if ( CSVbest2 < 0.898 ) continue ;
+            /////////if ( CSVbest2 < 0.898 ) continue ;
 
          }
 
@@ -309,6 +358,26 @@
          } else if ( METsig>150 ) {
             metsig_bin = 4 ;
          }
+
+         nbtag_rawMC = 0 ;
+         if ( nbtag2_rawMC == 1 ) { nbtag_rawMC = 2 ; }
+         if ( nbtag3_rawMC == 1 ) { nbtag_rawMC = 3 ; }
+         if ( nbtag4_rawMC == 1 ) { nbtag_rawMC = 4 ; }
+
+         nbtag_nomSF = 0 ;
+         if ( nbtag2_nomSF == 1 ) { nbtag_nomSF = 2 ; }
+         if ( nbtag3_nomSF == 1 ) { nbtag_nomSF = 3 ; }
+         if ( nbtag4_nomSF == 1 ) { nbtag_nomSF = 4 ; }
+
+         nbtag_SFp1sig = 0 ;
+         if ( nbtag2_SFp1sig == 1 ) { nbtag_SFp1sig = 2 ; }
+         if ( nbtag3_SFp1sig == 1 ) { nbtag_SFp1sig = 3 ; }
+         if ( nbtag4_SFp1sig == 1 ) { nbtag_SFp1sig = 4 ; }
+
+         nbtag_SFm1sig = 0 ;
+         if ( nbtag2_SFm1sig == 1 ) { nbtag_SFm1sig = 2 ; }
+         if ( nbtag3_SFm1sig == 1 ) { nbtag_SFm1sig = 3 ; }
+         if ( nbtag4_SFm1sig == 1 ) { nbtag_SFm1sig = 4 ; }
 
          outReducedTree->Fill() ;
 
